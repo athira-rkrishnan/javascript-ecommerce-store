@@ -219,5 +219,52 @@
     }
 }
 
-
+@media screen and (max-width: 768px) { 
+    .outer-container .header-top .shippg-text {
+        max-width: 346px;
+        width: 100%;
+        gap: 1rem;
+    }
+    .outer-container .header-top p,
+    .outer-container .header-top i {
+        font-size: 0.85rem;
+    }
+    .outer-container .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+    .outer-container .header .nav-section {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    header .nav-section ul {
+        width: 100%;
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+    .header .nav-section ul li {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .header .nav-actions {
+        width: 100%;
+        margin-top: 1rem;
+        justify-content: space-between;
+    }
+    .header .nav-actions .search-box {
+        width: 100%;
+        max-width: 35rem;
+    }
+    .header .toggle-menu {
+        display: block;
+        position: absolute;
+        top: 1.2rem;
+        right: 1rem;
+        font-size: 1.5rem;
+    }
+}
 
