@@ -162,6 +162,23 @@
     outline: none;
 }
 
+.outer-container .products-container {
+    background: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.outer-container .products-container .filter-container {
+    background: rgb(157, 69, 84);
+}
+.outer-container .products-container .productListing-container {
+    background: rgb(70, 192, 70);
+}
+.star-checked {
+  color: orange;
+}
+
 .outer-container .footer {
     display: flex;
     flex-wrap: wrap;
