@@ -177,7 +177,7 @@
     padding: 1.5rem;
     border-radius: 1rem;
     height: fit-content;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .filter-container h3 {
     font-size: 1.5rem;
@@ -247,7 +247,101 @@
 .outer-container .products-container .productListing-container {
     background: rgb(70, 192, 70);
     flex-basis: 80%;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    user-select: none;
 }
+.productListing-container > p{
+    margin-bottom: 1.5rem;
+    color: #666;
+    font-size: 0.95rem;
+}
+.products-lists-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+.product-item{
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1rem;
+    overflow: hidden;
+    transition: 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.product-item:hover{
+    transform: translateY(-6px);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.product-item img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+}
+.product-item p:first-of-type{
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+.product-item h3{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+    color: #222;
+    user-select: text;
+}
+.star-checked {
+  color: orange;
+}
+.product-item span{
+    font-size: 0.9rem;
+}
+.product-item span:last-child{
+    color: #666;
+}
+.product-item p:last-of-type{
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4B0082;
+}
+.product-item p:last-of-type span:first-child{
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    font-weight: 400;
+}
+.product-item p:last-of-type span:last-child{
+    color: #0f9d58;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+.product-item button{
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.9rem;
+    border: none;
+    outline: none;
+    border-radius: 0.8rem;
+    background: #4B0082;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.product-item button:hover{
+    background: #36005c;
+}
+
+
+
+
 
 .outer-container .footer {
     display: flex;
