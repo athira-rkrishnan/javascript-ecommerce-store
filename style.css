@@ -181,6 +181,9 @@
     height: fit-content;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.products-container .filter-container .close-filter {
+    display: none;
+}
 .filter-container h3 {
     font-size: 1.5rem;
     color: #4B0082;
@@ -681,8 +684,23 @@ option:hover {
         transition: 0.3s ease;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
-    .filter-container.active {
+    .products-container .filter-container.active {
         left: 0;
+    }
+    .products-container .filter-container .close-filter {
+        width: 22px;
+        height: 22px;
+        border-radius: 10%;
+        background: #d4d4d4;
+        color: #4B0082;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 20px;
+        left: 88%;
+        user-select: none;
+        cursor: pointer;
     }
     .outer-container .products-container .productListing-container {
         flex-basis: 100%;
