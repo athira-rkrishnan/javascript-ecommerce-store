@@ -163,7 +163,6 @@
 }
 
 .outer-container .products-container {
-    background: yellow;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -261,7 +260,7 @@ option:hover {
 }
 
 .outer-container .products-container .productListing-container {
-    background: rgb(70, 192, 70);
+    background: #f5f5f5;
     flex-basis: 80%;
     padding: 0.7rem 1rem;
     border-radius: 1rem;
@@ -700,12 +699,20 @@ option:hover {
         padding: 0.8rem;
         font-size: 0.9rem;
     }
+    .products-container .productListing-container .pagination {
+        gap: 0.5rem;
+    }
+    .productListing-container  .pagination button{
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+    }
     .outer-container .footer .footer-column {
         flex: 1 1 100%;
     }
     .footer .footer-column .social-icons {
         justify-content: flex-start;
     }
+    
 }
 
 
