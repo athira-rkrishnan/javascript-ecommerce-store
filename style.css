@@ -355,7 +355,35 @@ option:hover {
 .product-item button:hover {
     background: #36005c;
 }
-
+.products-container .productListing-container .pagination {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+.productListing-container .pagination button {
+    border: none;
+    outline: none;
+    padding: 0.7rem 1rem;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
+}
+.productListing-container .pagination button:hover {
+    background: #4B0082;
+    color: #ffffff;
+}
+.productListing-container .pagination .active {
+    background: #4B0082;
+    color: #ffffff;
+}
 .outer-container .footer {
     display: flex;
     flex-wrap: wrap;
@@ -428,7 +456,6 @@ option:hover {
     text-align: center;
     padding: 0.2rem;
 }
-
 
 @media screen and (max-width: 1024px) {
     .outer-container .header-top {
@@ -634,7 +661,7 @@ option:hover {
         font-size: 0.95rem;
         font-weight: 500;
     }
-    .products-container .filter-container {
+    .outer-container .products-container .filter-container {
         position: fixed;
         top: 0;
         left: -100%;
