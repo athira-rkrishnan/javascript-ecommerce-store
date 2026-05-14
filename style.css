@@ -508,6 +508,47 @@ option:hover {
         right: 1rem;
         font-size: 1.5rem;
     }
+    .outer-container .products-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .outer-container .products-container .filter-container {
+        display: block;
+        position: static;
+        width: 30%;
+        flex-basis: 30%;
+        height: auto;
+        padding: 1rem;
+    }
+    .products-container .filter-toggle {
+        display: none;
+    }
+    .outer-container .products-container .productListing-container {
+        width: 70%;
+        flex-basis: 70%;
+        padding: 1rem;
+    }
+    .products-lists-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .product-item {
+        padding: 0.9rem;
+    }
+    .product-item img {
+        height: 200px;
+    }
+    .product-item h3 {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+    .product-item button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
     .outer-container .footer {
         justify-content: space-between;
         gap: 1rem;
@@ -617,6 +658,7 @@ option:hover {
     .products-lists-container {
         grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 1rem 0.5rem;
     }
     .product-item {
         padding: 0.8rem;
