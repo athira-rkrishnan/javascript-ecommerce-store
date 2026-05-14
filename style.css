@@ -508,9 +508,13 @@ option:hover {
         flex-wrap: wrap;
     }
     .header .nav-section ul {
+        display: none;
         width: 100%;
         flex-direction: column;
         margin-top: 1rem;
+    }
+    .header .nav-section ul.active {
+        display: flex;
     }
     .header .nav-section ul li {
         width: 100%;
@@ -617,9 +621,13 @@ option:hover {
         align-items: flex-start;
     }
     .header .nav-section ul {
+        display: none;
         flex-direction: column;
         width: 100%;
         margin-top: 1rem;
+    }
+    .header .nav-section ul.active {
+        display: flex;
     }
     .header .nav-section ul li {
         width: 100%;
