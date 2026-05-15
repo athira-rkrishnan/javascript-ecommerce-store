@@ -312,8 +312,17 @@ option:hover {
     color: #222;
     user-select: text;
 }
-.star-checked {
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.rating .star-checked {
     color: orange;
+}
+.rating .star-rate {
+    color: #555;
+    font-weight: 600;
 }
 .product-item span {
     font-size: 0.9rem;

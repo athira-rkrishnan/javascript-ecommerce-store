@@ -22,8 +22,10 @@ async function fetchProducts() {
     try {
         const response = await fetch("https://dummyjson.com/products");
         console.log(response);
-        const products = await response.json();
-        console.log(products);
+        const productsData = await response.json();
+        console.log(productsData);
+
+        displayProducts(productsData);
     }
     catch(error) {
         console.log("Error fetching products:", error);
@@ -32,3 +34,22 @@ async function fetchProducts() {
 
 fetchProducts();
 
+function displayProducts(productsData) {
+    const exchangeRate = 95;
+    productsListsContainer.innerHTML = "";
+    productsData.products.forEach(product => {
+        productsListsContainer.innerHTML += `
+            <div class = "product-item">
+                <img src = "${product.thumbnail}" alt = "${product.title}" height = 200>
+                <p>${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                <h3>${product.title}</h3>
+                <div class="rating">
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="star-rate">${product.rating}</span>
+                </div>
+                <p>Rs.${Math.floor(product.price * exchangeRate)}</p>
+                <button>Add to Cart</button>
+            </div>
+        `;
+    });
+}
