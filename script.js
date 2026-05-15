@@ -34,15 +34,7 @@ async function fetchProducts() {
 
         const allProducts = [...dummyJsonData.products, ...fakeStoreData];
         console.log(allProducts);
-  
-
-/*
-        const response = await fetch("https://dummyjson.com/products");
-        console.log(response);
-        const productsData = await response.json();
-        console.log(productsData); 
-
-        displayProducts(productsData); */
+        displayProducts(allProducts);
     }
     catch(error) {
         console.log("Error fetching products:", error);
@@ -58,19 +50,23 @@ async function fetchProducts() {
 }
 
 fetchProducts();
-/*
-function displayProducts(productsData) {
+
+function displayProducts(allProducts) {
     const exchangeRate = 95;
+    
     productsListsContainer.innerHTML = "";
-    productsData.products.forEach(product => {
+    allProducts.forEach(product => {
+        const productThumbnail = product.thumbnail || product.image; 
+        const productRatings = (product.rating?.rate || product.rating).toFixed(1); 
+
         productsListsContainer.innerHTML += `
             <div class = "product-item">
-                <img src = "${product.thumbnail}" alt = "${product.title}" height = 200>
+                <img src = "${productThumbnail}" alt = "${product.title}" height = 200>
                 <p>${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
                 <h3>${product.title}</h3>
                 <div class="rating">
                     <span class="fa fa-star star-checked"></span>
-                    <span class="star-rate">${product.rating}</span>
+                    <span class="star-rate">${productRatings}</span>
                 </div>
                 <p>Rs.${Math.floor(product.price * exchangeRate)}</p>
                 <button>Add to Cart</button>
@@ -78,4 +74,3 @@ function displayProducts(productsData) {
         `;
     });
 }
-*/
