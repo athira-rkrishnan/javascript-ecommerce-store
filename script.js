@@ -20,12 +20,29 @@ closeFilter.addEventListener("click", () => {
  
 async function fetchProducts() {
     try {
-        const response = await fetch("https://dummyjson.com/products1");
+        const [dummyJsonApiResponse, fakeStoreApiResponse] = await Promise.all([
+            fetch("https://dummyjson.com/products"),
+            fetch("https://fakestoreapi.com/products/")
+        ]);
+        console.log(dummyJsonApiResponse);
+        console.log(fakeStoreApiResponse);
+
+        const dummyJsonData = await dummyJsonApiResponse.json();
+        const fakeStoreData = await fakeStoreApiResponse.json();
+        console.log(dummyJsonData);
+        console.log(fakeStoreData);
+
+        const allProducts = [...dummyJsonData.products, ...fakeStoreData];
+        console.log(allProducts);
+  
+
+/*
+        const response = await fetch("https://dummyjson.com/products");
         console.log(response);
         const productsData = await response.json();
-        console.log(productsData);
+        console.log(productsData); 
 
-        displayProducts(productsData);
+        displayProducts(productsData); */
     }
     catch(error) {
         console.log("Error fetching products:", error);
@@ -41,7 +58,7 @@ async function fetchProducts() {
 }
 
 fetchProducts();
-
+/*
 function displayProducts(productsData) {
     const exchangeRate = 95;
     productsListsContainer.innerHTML = "";
@@ -61,3 +78,4 @@ function displayProducts(productsData) {
         `;
     });
 }
+*/
