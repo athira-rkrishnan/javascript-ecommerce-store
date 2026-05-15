@@ -61,6 +61,9 @@ function displayProducts(allProducts) {
 
         productsListsContainer.innerHTML += `
             <div class = "product-item">
+                <div class="wishlist-icon">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
                 <img src = "${productThumbnail}" alt = "${product.title}" height = 200>
                 <p>${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
                 <h3>${product.title}</h3>

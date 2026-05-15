@@ -215,6 +215,48 @@
     height: 16px;
     cursor: pointer;
 }
+.fashion-category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.fashion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.fashion-label {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+.fashion-label label {
+    cursor: pointer;
+}
+.toggle-subcategories {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    transition: 0.3s ease;
+}
+.sub-categories {
+    display: block;
+    margin-left: 2rem;
+    margin-top: 0.8rem;
+}
+.sub-categories li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    color: #666;
+}
 .price-slider {
     margin-bottom: 2rem;
 }
@@ -287,10 +329,35 @@ option:hover {
     overflow: hidden;
     transition: 0.3s ease;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    position: relative;
 }
 .product-item:hover {
     transform: translateY(-6px);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.product-item .wishlist-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 38px;
+    height: 38px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    transition: 0.3s ease;
+    z-index: 2;
+}
+.wishlist-icon i {
+    font-size: 1rem;
+    color: #555;
+    transition: 0.3s ease;
+}
+.wishlist-icon:hover {
+    transform: scale(1.08);
 }
 .product-item img {
     width: 100%;
@@ -770,7 +837,6 @@ option:hover {
     }
     
 }
-
 
 
 
