@@ -366,7 +366,7 @@ option:hover {
 .product-item button:hover {
     background: #36005c;
 }
-.products-lists-container .error-message{
+.products-lists-container .error-message {
     width: 30%;
     padding: 1rem;
     background: #ffe5e5;
@@ -505,6 +505,9 @@ option:hover {
     .header .nav-section ul {
         gap: 0.5rem;
     }
+    .products-lists-container .error-message {
+        width: 45%;  
+    }
 }
 
 @media screen and (max-width: 768px) { 
@@ -605,6 +608,9 @@ option:hover {
     .product-item button {
         padding: 0.8rem;
         font-size: 0.9rem;
+    }
+    .products-lists-container .error-message {
+        width: 80%;
     }
     .outer-container .footer {
         justify-content: space-between;
@@ -752,7 +758,7 @@ option:hover {
     .products-container .productListing-container .pagination {
         gap: 0.5rem;
     }
-    .productListing-container  .pagination button{
+    .productListing-container  .pagination button {
         padding: 0.6rem 0.9rem;
         font-size: 0.85rem;
     }
