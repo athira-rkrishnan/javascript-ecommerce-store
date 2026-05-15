@@ -20,7 +20,7 @@ closeFilter.addEventListener("click", () => {
  
 async function fetchProducts() {
     try {
-        const response = await fetch("https://dummyjson.com/products");
+        const response = await fetch("https://dummyjson.com/products1");
         console.log(response);
         const productsData = await response.json();
         console.log(productsData);
@@ -29,6 +29,14 @@ async function fetchProducts() {
     }
     catch(error) {
         console.log("Error fetching products:", error);
+        productsListsContainer.innerHTML = `
+            <div class="error-message">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Failed to load products
+            </div>
+        `;
+        productsListsContainer.style.display = "flex";
+        productsListsContainer.style.justifyContent = "center";
     }
 }
 

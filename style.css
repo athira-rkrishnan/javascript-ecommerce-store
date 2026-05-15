@@ -366,6 +366,21 @@ option:hover {
 .product-item button:hover {
     background: #36005c;
 }
+.products-lists-container .error-message{
+    width: 30%;
+    padding: 1rem;
+    background: #ffe5e5;
+    color: #d93025;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    margin: auto;
+}
 .products-container .productListing-container .pagination {
     margin-top: 2rem;
     display: flex;
