@@ -244,8 +244,11 @@
     color: #555;
     transition: 0.3s ease;
 }
+.toggle-subcategories.rotate {
+    transform: rotate(180deg);
+}
 .sub-categories {
-    display: block;
+    display: none;
     margin-left: 2rem;
     margin-top: 0.8rem;
 }
@@ -256,6 +259,9 @@
     margin-bottom: 0.7rem;
     font-size: 0.9rem;
     color: #666;
+}
+.sub-categories.active {
+    display: block;
 }
 .price-slider {
     margin-bottom: 2rem;
@@ -355,6 +361,10 @@ option:hover {
     font-size: 1rem;
     color: #555;
     transition: 0.3s ease;
+}
+.wishlist-icon.active i {
+    color: crimson;
+    font-weight: 900;
 }
 .wishlist-icon:hover {
     transform: scale(1.08);

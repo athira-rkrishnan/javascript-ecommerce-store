@@ -3,7 +3,10 @@ const navigationMenu = document.querySelector(".nav-section ul");
 const filterToggle = document.querySelector(".filter-toggle");
 const filterContainer = document.querySelector(".filter-container");
 const closeFilter = document.querySelector(".close-filter");
+const toggleDownArrow = document.querySelector(".toggle-subcategories");
+const subCategories = document.querySelector(".sub-categories");
 const productsListsContainer = document.querySelector(".products-lists-container");
+
 
 
 toggleMenu.addEventListener("click", () => {
@@ -16,6 +19,11 @@ filterToggle.addEventListener("click", () => {
 
 closeFilter.addEventListener("click", () => {
     filterContainer.classList.remove("active");
+});
+
+toggleDownArrow.addEventListener("click", () => {
+    subCategories.classList.toggle("active");
+    subCategories.classList.toggle("rotate");
 });
  
 async function fetchProducts() {
@@ -77,3 +85,21 @@ function displayProducts(allProducts) {
         `;
     });
 }
+
+
+document.addEventListener("click", (event) => {
+    const wishlistBtn = event.target.closest(".wishlist-icon"); 
+    if(wishlistBtn) {
+        wishlistBtn.classList.toggle("active");
+        const wishlistIcon = wishlistBtn.querySelector("i");
+        if(wishlistBtn.classList.contains("active")) {
+            wishlistIcon.classList.remove("fa-regular");
+            wishlistIcon.classList.add("fa-solid");
+        }
+        else {
+            wishlistIcon.classList.remove("fa-solid");
+            wishlistIcon.classList.add("fa-regular");
+        }
+    }
+});
+
