@@ -1,5 +1,5 @@
 const toggleMenu = document.querySelector(".toggle-menu");
-const navigationMenu = document.querySelector(".nav-section ul");
+const navigationMenu = document.querySelector(".navigation-menu");
 const filterToggle = document.querySelector(".filter-toggle");
 const filterContainer = document.querySelector(".filter-container");
 const closeFilter = document.querySelector(".close-filter");
@@ -23,7 +23,7 @@ closeFilter.addEventListener("click", () => {
 
 toggleDownArrow.addEventListener("click", () => {
     subCategories.classList.toggle("active");
-    subCategories.classList.toggle("rotate");
+    toggleDownArrow.classList.toggle("rotate");
 });
  
 async function fetchProducts() {

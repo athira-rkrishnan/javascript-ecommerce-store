@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "title": "Nike Air Max",
+    "category": "shoes",
+    "price": 3999,
+    "rating": 4.5,
+    "discountPercentage": 10.48,
+    "image": "./assets/images/nikeshoe.webp"
+  },
+  {
+    "id": 2,
+    "title": "Adidas Running Shoes",
+    "category": "shoes",
+    "price": 8560,
+    "rating": 5.0,
+    "discountPercentage": 12.50,
+    "image": "./assets/images/adidasshoe.webp"
+  },
+  {
+    "id": 3,
+    "title": "Puma Sneakers",
+    "category": "shoes",
+    "price": 2899,
+    "rating": 3.1,
+    "discountPercentage": 20.18,
+    "image": "./assets/images/pumashoe.webp"
+  },
+  {
+    "id": 4,
+    "title": "Trendy & Stylish Loafers For Men",
+    "category": "shoes",
+    "price": 10000,
+    "rating": 4.2,
+    "discountPercentage": 5.90,
+    "image": "./assets/images/loafers.webp"
+  },
+  {
+    "id": 5,
+    "title": "BRUTON Exclusive Sneakers For Men",
+    "category": "shoes",
+    "price": 9999,
+    "rating": 3.9,
+    "discountPercentage": 15.30,
+    "image": "./assets/images/sneakershoe.webp"
+  }
+]
+
+
