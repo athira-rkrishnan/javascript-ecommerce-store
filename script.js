@@ -3,10 +3,11 @@ const navigationMenu = document.querySelector(".navigation-menu");
 const filterToggle = document.querySelector(".filter-toggle");
 const filterContainer = document.querySelector(".filter-container");
 const closeFilter = document.querySelector(".close-filter");
-const toggleDownArrow = document.querySelector(".toggle-subcategories");
-const subCategories = document.querySelector(".sub-categories");
+const fashionToggleBtn = document.querySelector(".fashion-toggle-button");
+const fashionSubCategories = document.querySelector(".fashion-sub-categories");
+const beautyToggleBtn = document.querySelector(".beauty-toggle-button");
+const beautySubCategories = document.querySelector(".beauty-sub-categories");
 const productsListsContainer = document.querySelector(".products-lists-container");
-
 
 
 toggleMenu.addEventListener("click", () => {
@@ -21,9 +22,14 @@ closeFilter.addEventListener("click", () => {
     filterContainer.classList.remove("active");
 });
 
-toggleDownArrow.addEventListener("click", () => {
-    subCategories.classList.toggle("active");
-    toggleDownArrow.classList.toggle("rotate");
+fashionToggleBtn.addEventListener("click", () => {
+    fashionSubCategories.classList.toggle("active");
+    fashionToggleBtn.classList.toggle("rotate");
+});
+
+beautyToggleBtn.addEventListener("click", () => {
+    beautySubCategories.classList.toggle("active");
+    beautyToggleBtn.classList.toggle("rotate");
 });
  
 async function fetchProducts() {

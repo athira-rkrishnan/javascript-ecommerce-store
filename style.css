@@ -236,7 +236,7 @@
 .fashion-label label {
     cursor: pointer;
 }
-.toggle-subcategories {
+.fashion-toggle-button {
     border: none;
     background: transparent;
     cursor: pointer;
@@ -244,15 +244,15 @@
     color: #555;
     transition: 0.3s ease;
 }
-.toggle-subcategories.rotate {
+.fashion-toggle-button.rotate {
     transform: rotate(180deg);
 }
-.sub-categories {
+.fashion-sub-categories {
     display: none;
     margin-left: 2rem;
     margin-top: 0.8rem;
 }
-.sub-categories li {
+.fashion-sub-categories li {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -260,7 +260,55 @@
     font-size: 0.9rem;
     color: #666;
 }
-.sub-categories.active {
+.fashion-sub-categories.active {
+    display: block;
+}
+.beauty-category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.beauty-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.beauty-label {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+.beauty-label label {
+    cursor: pointer;
+}
+.beauty-toggle-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    transition: 0.3s ease;
+}
+.beauty-toggle-button.rotate {
+    transform: rotate(180deg);
+}
+.beauty-sub-categories {
+    display: none;
+    margin-left: 2rem; 
+    margin-top: 0.8rem;
+}
+.beauty-sub-categories li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+.beauty-sub-categories.active {
     display: block;
 }
 .price-slider {
