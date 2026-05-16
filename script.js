@@ -28,19 +28,23 @@ toggleDownArrow.addEventListener("click", () => {
  
 async function fetchProducts() {
     try {
-        const [dummyJsonApiResponse, fakeStoreApiResponse] = await Promise.all([
+        const [dummyJsonApiResponse, fakeStoreApiResponse, shoesResponse] = await Promise.all([
             fetch("https://dummyjson.com/products"),
-            fetch("https://fakestoreapi.com/products/")
+            fetch("https://fakestoreapi.com/products/"),
+            fetch("./shoes.json")
         ]);
         console.log(dummyJsonApiResponse);
         console.log(fakeStoreApiResponse);
+        console.log(shoesResponse);
 
         const dummyJsonData = await dummyJsonApiResponse.json();
         const fakeStoreData = await fakeStoreApiResponse.json();
+        const shoesData = await shoesResponse.json();
         console.log(dummyJsonData);
         console.log(fakeStoreData);
+        console.log(shoesData);
 
-        const allProducts = [...dummyJsonData.products, ...fakeStoreData];
+        const allProducts = [...dummyJsonData.products, ...fakeStoreData, ...shoesData];
         console.log(allProducts);
         displayProducts(allProducts);
     }
