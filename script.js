@@ -172,12 +172,25 @@ categoryFilters.forEach(category => {
 });
 
 function categoryFilterProducts() {
-    const selectedCategories = [];
+    let selectedCategories = [];
     categoryFilters.forEach(category => {
         if(category.checked) {
-            selectedCategories.push(category.value.toLowerCase());
+            const categoryValue = category.value.toLowerCase();
+            if(categoryValue === "fashion") {
+                selectedCategories.push("men's clothing", "women's clothing", "shoes");
+            }
+            else if(categoryValue === "beauty & accessories") {
+                selectedCategories.push("beauty", "fragrances", "jewelery");
+            }
+            else {
+                selectedCategories.push(categoryValue);
+            }
         }
     });
+    console.log(selectedCategories);
+
+    selectedCategories = [...new Set(selectedCategories)];
+
     console.log(selectedCategories);
 
     if(selectedCategories.length === 0) {
