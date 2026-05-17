@@ -126,6 +126,7 @@ document.addEventListener("click", (event) => {
 
 
 function searchProducts() {
+    console.log("Searching...");
     const searchValue = searchInput.value.toLowerCase();
     const filteredProducts = allProductsData.filter(product => 
         product.title.toLowerCase().includes(searchValue) || product.category.toLowerCase().includes(searchValue)
@@ -144,11 +145,23 @@ function searchProducts() {
         return;
     }
     displayProducts(filteredProducts);
+    
 }
 
-searchInput.addEventListener("keypress", (event) => {
+searchInput.addEventListener("keydown", (event) => {
     if(event.key === "Enter") {
         searchProducts();
     }
 });
 searchIcon.addEventListener("click", searchProducts);
+
+
+let debounceTimer;
+searchInput.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        searchProducts();
+    }, 500);
+});
+
+
