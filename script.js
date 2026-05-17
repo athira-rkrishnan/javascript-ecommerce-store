@@ -1,3 +1,5 @@
+let allProductsData = [];
+
 const toggleMenu = document.querySelector(".toggle-menu");
 const navigationMenu = document.querySelector(".navigation-menu");
 const filterToggle = document.querySelector(".filter-toggle");
@@ -8,7 +10,8 @@ const fashionSubCategories = document.querySelector(".fashion-sub-categories");
 const beautyToggleBtn = document.querySelector(".beauty-toggle-button");
 const beautySubCategories = document.querySelector(".beauty-sub-categories");
 const productsListsContainer = document.querySelector(".products-lists-container");
-
+const searchInput = document.querySelector(".search-input");
+const searchIcon = document.querySelector(".search-icon");
 
 toggleMenu.addEventListener("click", () => {
     navigationMenu.classList.toggle("active");
@@ -52,6 +55,7 @@ async function fetchProducts() {
 
         const allProducts = [...dummyJsonData.products, ...fakeStoreData, ...shoesData];
         console.log(allProducts);
+        allProductsData = allProducts;
         displayProducts(allProducts);
     }
     catch(error) {
@@ -69,8 +73,7 @@ async function fetchProducts() {
 
 fetchProducts();
 
-function displayProducts(allProducts) {
-        
+function displayProducts(allProducts) { 
     productsListsContainer.innerHTML = "";
     allProducts.forEach(product => {
         const exchangeRate = 95;
@@ -121,3 +124,31 @@ document.addEventListener("click", (event) => {
     }
 });
 
+
+function searchProducts() {
+    const searchValue = searchInput.value.toLowerCase();
+    const filteredProducts = allProductsData.filter(product => 
+        product.title.toLowerCase().includes(searchValue) || product.category.toLowerCase().includes(searchValue)
+    );
+    console.log(filteredProducts);
+    
+    if(filteredProducts.length === 0) {
+        productsListsContainer.innerHTML = `
+            <div class="error-message">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                No products found
+            </div>
+        `;
+        productsListsContainer.style.display = "flex";
+        productsListsContainer.style.justifyContent = "center";
+        return;
+    }
+    displayProducts(filteredProducts);
+}
+
+searchInput.addEventListener("keypress", (event) => {
+    if(event.key === "Enter") {
+        searchProducts();
+    }
+});
+searchIcon.addEventListener("click", searchProducts);
