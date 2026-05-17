@@ -12,6 +12,8 @@ const beautySubCategories = document.querySelector(".beauty-sub-categories");
 const productsListsContainer = document.querySelector(".products-lists-container");
 const searchInput = document.querySelector(".search-input");
 const searchIcon = document.querySelector(".search-icon");
+const categoryFilters = document.querySelectorAll(".category-filter");
+
 
 toggleMenu.addEventListener("click", () => {
     navigationMenu.classList.toggle("active");
@@ -164,4 +166,28 @@ searchInput.addEventListener("input", () => {
     }, 500);
 });
 
+
+categoryFilters.forEach(category => {
+    category.addEventListener("change", categoryFilterProducts);
+});
+
+function categoryFilterProducts() {
+    const selectedCategories = [];
+    categoryFilters.forEach(category => {
+        if(category.checked) {
+            selectedCategories.push(category.value.toLowerCase());
+        }
+    });
+    console.log(selectedCategories);
+
+    if(selectedCategories.length === 0) {
+        displayProducts(allProductsData);
+        return;
+    }
+    const categoryFilteredProducts  = allProductsData.filter(product => {
+        return selectedCategories.includes(product.category.toLowerCase());
+    });
+    console.log(categoryFilteredProducts);
+    displayProducts(categoryFilteredProducts);
+}
 
