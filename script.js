@@ -70,12 +70,16 @@ async function fetchProducts() {
 fetchProducts();
 
 function displayProducts(allProducts) {
-    const exchangeRate = 95;
-    
+        
     productsListsContainer.innerHTML = "";
     allProducts.forEach(product => {
+        const exchangeRate = 95;
         const productThumbnail = product.thumbnail || product.image; 
         const productRatings = (product.rating?.rate || product.rating).toFixed(1); 
+        const originalPrice = Math.floor(product.price * exchangeRate);
+        const discountPercent = Math.ceil(product.discountPercentage || (Math.random() * 20) + 5);
+        const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercent / 100));
+        
 
         productsListsContainer.innerHTML += `
             <div class = "product-item">
@@ -89,7 +93,11 @@ function displayProducts(allProducts) {
                     <span class="fa fa-star star-checked"></span>
                     <span class="star-rate">${productRatings}</span>
                 </div>
-                <p>Rs.${Math.floor(product.price * exchangeRate)}</p>
+                <p class="price">
+                    ₹${discountedPrice}
+                    <span class="original-price">₹${originalPrice}</span>
+                    <span class="discount">${discountPercent}% OFF</span>
+                </p>
                 <button>Add to Cart</button>
             </div>
         `;
