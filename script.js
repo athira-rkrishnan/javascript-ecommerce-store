@@ -204,3 +204,29 @@ function categoryFilterProducts() {
     displayProducts(categoryFilteredProducts);
 }
 
+const minRange = document.querySelector(".min-range");
+const maxRange = document.querySelector(".max-range");
+const minPriceText = document.getElementById("min-price");
+const maxPriceText = document.getElementById("max-price");
+
+minRange.addEventListener("input", priceFilterProducts);
+maxRange.addEventListener("input", priceFilterProducts);
+
+function priceFilterProducts() {
+    const minPrice = Number(minRange.value);
+    const maxPrice = Number(maxRange.value);
+    minPriceText.textContent = minPrice;
+    maxPriceText.textContent = maxPrice;
+
+    const priceFilteredProducts = allProductsData.filter(product => {
+        const originalPrice = Math.floor(product.price * 95);
+        const discountPercentage = product.discountPercentage || Math.floor(Math.random() * 20) + 5;
+        const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercentage / 100));
+        return discountedPrice >= minPrice && discountedPrice <= maxPrice;
+    });
+    console.log(priceFilteredProducts);
+    displayProducts(priceFilteredProducts);
+}
+
+
+

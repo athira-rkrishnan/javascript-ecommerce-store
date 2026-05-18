@@ -141,10 +141,14 @@
                 <div class = "price-slider">
                     <h4>Price</h4>
                     <div class="values">
-                        <label>Min: $<span id="range1">250</span></label> - <label>Max: $<span id="range2">750</span></label>
+                        <label>Min: $<span id="min-price">250</span></label> - <label>Max: $<span id="max-price">750</span></label>
                     </div>
-                    <input type="range" min="0" max="100" value="50" id="slider">
-                    <p>Reset price range</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" class="min-range" min="0" max="210000" value="2500">
+                        <input type="range" class="max-range" min="0" max="210000" value="8500">
+                    </div>
+                    <p class = "resetPrice">Reset price range</p>
                 </div>
                 <div class = "sortby">
                     <h4>Sort By</h4>
