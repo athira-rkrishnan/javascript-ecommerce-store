@@ -55,7 +55,18 @@ async function fetchProducts() {
         console.log(fakeStoreData);
         console.log(shoesData);
 
-        const allProducts = [...dummyJsonData.products, ...fakeStoreData, ...shoesData];
+        const allProducts = [...dummyJsonData.products, ...fakeStoreData, ...shoesData].map(product => {
+            const exchangeRate = 95;
+            const originalPrice = Math.floor(product.price * exchangeRate);
+            const discountPercentage = Math.ceil(product.discountPercentage || (Math.random() * 20) + 5);
+            const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercentage / 100));
+            return {
+                ...product,
+                originalPrice,
+                discountPercentage,
+                discountedPrice
+            };
+        });
         console.log(allProducts);
         allProductsData = allProducts;
         displayProducts(allProducts);
@@ -77,15 +88,10 @@ fetchProducts();
 
 function displayProducts(allProducts) { 
     productsListsContainer.innerHTML = "";
-    allProducts.forEach(product => {
-        const exchangeRate = 95;
+    allProducts.forEach(product => {   
         const productThumbnail = product.thumbnail || product.image; 
         const productRatings = (product.rating?.rate || product.rating).toFixed(1); 
-        const originalPrice = Math.floor(product.price * exchangeRate);
-        const discountPercent = Math.ceil(product.discountPercentage || (Math.random() * 20) + 5);
-        const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercent / 100));
-        
-
+              
         productsListsContainer.innerHTML += `
             <div class = "product-item">
                 <div class="wishlist-icon">
@@ -99,9 +105,9 @@ function displayProducts(allProducts) {
                     <span class="star-rate">${productRatings}</span>
                 </div>
                 <p class="price">
-                    ₹${discountedPrice}
-                    <span class="original-price">₹${originalPrice}</span>
-                    <span class="discount">${discountPercent}% OFF</span>
+                    ₹${product.discountedPrice}
+                    <span class="original-price">₹${product.originalPrice}</span>
+                    <span class="discount">${product.discountPercentage}% OFF</span>
                 </p>
                 <button>Add to Cart</button>
             </div>
@@ -220,10 +226,7 @@ function priceFilterProducts() {
     maxPriceText.textContent = maxPrice;
 
     const priceFilteredProducts = allProductsData.filter(product => {
-        const originalPrice = Math.floor(product.price * 95);
-        const discountPercentage = product.discountPercentage || Math.floor(Math.random() * 20) + 5;
-        const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercentage / 100));
-        return discountedPrice >= minPrice && discountedPrice <= maxPrice;
+        return product.discountedPrice >= minPrice && product.discountedPrice <= maxPrice;
     });
     console.log(priceFilteredProducts);
     displayProducts(priceFilteredProducts);
@@ -247,9 +250,9 @@ maxRange.addEventListener("input", () => {
 
 resetPrice.addEventListener("click", () => {
     minRange.value = 0;
-    maxRange.value = 210000;
+    maxRange.value = 202000;
     minPriceText.textContent = 0;
-    maxPriceText.textContent = 210000;
+    maxPriceText.textContent = 202000;
     displayProducts(allProductsData);
     updateSliderTrack();
 });
@@ -267,3 +270,4 @@ function updateSliderTrack() {
         #4B0082 ${right}%,
         #ddd ${right}%)`;
 }
+
