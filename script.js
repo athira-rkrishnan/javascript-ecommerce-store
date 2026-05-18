@@ -234,6 +234,7 @@ minRange.addEventListener("input", () => {
         minRange.value = maxRange.value;
     }
     priceFilterProducts();
+    updateSliderTrack();
 });
 
 maxRange.addEventListener("input", () => {
@@ -241,6 +242,7 @@ maxRange.addEventListener("input", () => {
         maxRange.value = minRange.value;
     }
     priceFilterProducts();
+    updateSliderTrack();
 });
 
 resetPrice.addEventListener("click", () => {
@@ -249,4 +251,19 @@ resetPrice.addEventListener("click", () => {
     minPriceText.textContent = 0;
     maxPriceText.textContent = 210000;
     displayProducts(allProductsData);
+    updateSliderTrack();
 });
+
+function updateSliderTrack() {
+    const min = minRange.min;
+    const max = minRange.max;
+    const left = ((minRange.value - min) / (max - min)) * 100;
+    const right = ((maxRange.value - min) / (max - min)) * 100;
+
+    document.querySelector(".slider-track").style.background =
+        `linear-gradient(to right,
+        #ddd ${left}%,
+        #4B0082 ${left}%,
+        #4B0082 ${right}%,
+        #ddd ${right}%)`;
+}
