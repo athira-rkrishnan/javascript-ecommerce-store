@@ -13,6 +13,11 @@ const productsListsContainer = document.querySelector(".products-lists-container
 const searchInput = document.querySelector(".search-input");
 const searchIcon = document.querySelector(".search-icon");
 const categoryFilters = document.querySelectorAll(".category-filter");
+const minRange = document.querySelector(".min-range");
+const maxRange = document.querySelector(".max-range");
+const minPriceText = document.getElementById("min-price");
+const maxPriceText = document.getElementById("max-price");
+const resetPrice = document.querySelector(".resetPrice");
 
 
 toggleMenu.addEventListener("click", () => {
@@ -210,11 +215,6 @@ function categoryFilterProducts() {
     displayProducts(categoryFilteredProducts);
 }
 
-const minRange = document.querySelector(".min-range");
-const maxRange = document.querySelector(".max-range");
-const minPriceText = document.getElementById("min-price");
-const maxPriceText = document.getElementById("max-price");
-const resetPrice = document.querySelector(".resetPrice");
 
 minRange.addEventListener("input", priceFilterProducts);
 maxRange.addEventListener("input", priceFilterProducts);
@@ -271,3 +271,40 @@ function updateSliderTrack() {
         #ddd ${right}%)`;
 }
 
+const sortSelect = document.getElementById("sort-select");
+sortSelect.addEventListener("change", sortProducts);
+
+function sortProducts() {
+    const sortSelectValue = sortSelect.value;
+    let sortedProducts = [...allProductsData];
+    console.log(sortedProducts);
+
+    if(sortSelectValue === "high-low") {
+        sortedProducts.sort((a, b) => {
+            return b.discountedPrice - a.discountedPrice;
+        });
+    }
+    else if(sortSelectValue === "low-high") {
+        sortedProducts.sort((a, b) => {
+            return a.discountedPrice - b.discountedPrice;
+        });
+    }
+    else if(sortSelectValue === "ratings") {
+        sortedProducts.sort((a, b) => {
+            const ratingA = a.rating?.rate || a.rating;
+            const ratingB = b.rating?.rate || b.rating;
+            return ratingB - ratingA;
+        });
+    }
+    else if(sortSelectValue === "discount") {
+        sortedProducts.sort((a, b) => {
+            return b.discountPercentage - a.discountPercentage;
+        });
+    }
+    else if(sortSelectValue === "newest") {
+        sortedProducts.sort((a, b) => {
+            return b.id - a.id;
+        });
+    }
+    displayProducts(sortedProducts);
+}
