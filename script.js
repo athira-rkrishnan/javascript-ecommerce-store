@@ -208,6 +208,7 @@ const minRange = document.querySelector(".min-range");
 const maxRange = document.querySelector(".max-range");
 const minPriceText = document.getElementById("min-price");
 const maxPriceText = document.getElementById("max-price");
+const resetPrice = document.querySelector(".resetPrice");
 
 minRange.addEventListener("input", priceFilterProducts);
 maxRange.addEventListener("input", priceFilterProducts);
@@ -242,5 +243,10 @@ maxRange.addEventListener("input", () => {
     priceFilterProducts();
 });
 
-
-
+resetPrice.addEventListener("click", () => {
+    minRange.value = 0;
+    maxRange.value = 210000;
+    minPriceText.textContent = 0;
+    maxPriceText.textContent = 210000;
+    displayProducts(allProductsData);
+});
