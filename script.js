@@ -228,5 +228,19 @@ function priceFilterProducts() {
     displayProducts(priceFilteredProducts);
 }
 
+minRange.addEventListener("input", () => {
+    if(Number(minRange.value) > Number(maxRange.value)) {
+        minRange.value = maxRange.value;
+    }
+    priceFilterProducts();
+});
+
+maxRange.addEventListener("input", () => {
+    if(Number(maxRange.value) < Number(minRange.value)) {
+        maxRange.value = minRange.value;
+    }
+    priceFilterProducts();
+});
+
 
 
