@@ -163,7 +163,7 @@
                 </div>
             </div>
             <div class = "productListing-container">
-                <p>Showing 1 - 12 of 39 results</p>
+                <p class = "showResults">Showing 1 - 12 of 39 results</p>
                 <div class = "products-lists-container">
 <!--                <div class = "product-item">
                         <img src = "https://media.landmarkshops.in/cdn-cgi/image/h=831,w=615,q=85,fit=cover/lifestyle-new/1000016627710-Yellow-Yellow-1000016627710_05-2100.jpg" height = 200>
@@ -189,9 +189,7 @@
                     <button id="next-btn">Next</button>
                 </div>
             </div>
-
         </div>
-        
         <footer class="footer">
             <div class="footer-column">
                 <div class = "logo">
@@ -231,6 +229,100 @@
         </footer>
         <div class = "copyright">Copyright ⓒ 2016 NovaCart. All Rights Reserved.</div>
     </div>
+
+        <!-- Product Details Modal -->
+    <div class="product-modal-overlay">
+        <div class="product-modal">
+            <button class="close-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-left">
+                <div class="main-product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Nike Shoe" class="modal-main-image">
+                </div>
+                <div class="product-thumbnails">
+                    <div class="thumbnail active-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-right">
+                <h2 class="modal-product-title">Nike Air Zoom Pegasus</h2>
+                <div class="modal-rating">
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <span class="rating-text">4.5 Ratings</span>
+                </div>
+                <div class="modal-price-section">
+                    <span class="discounted-price">₹5,199</span>
+                    <span class="original-price">₹6,999</span>
+                    <span class="discount-percent">25% OFF</span>
+                </div>
+                <p class="tax-text">Inclusive of all taxes</p>
+                <div class="modal-description">
+                    <h4>Description</h4>
+                    <p>Experience unmatched comfort and performance with Nike Air Zoom Pegasus. Designed with lightweight breathable mesh, responsive cushioning, and durable outsole grip 
+                    for running, training, and everyday wear.</p>
+                </div>
+                <div class="product-colors">
+                    <h4>Select Color</h4>
+                    <div class="colors-list">
+                        <span class="color red active-color"></span>
+                        <span class="color black"></span>
+                        <span class="color green"></span>
+                        <span class="color gray"></span>
+                        <span class="color blue"></span>
+                    </div>
+                </div>
+                <div class="product-sizes">
+                    <h4>Select Size</h4>
+                    <div class="sizes-list">
+                        <button class="size-btn active-size">7</button>
+                        <button class="size-btn">8</button>
+                        <button class="size-btn">9</button>
+                        <button class="size-btn">10</button>
+                        <button class="size-btn">11</button>
+                    </div>
+                </div>
+                <div class="quantity-section">
+                    <div class="quantity-box">
+                        <button>-</button>
+                        <span>1</span>
+                        <button>+</button>
+                    </div>
+                    <p class="stock-text">Only <span>12 items</span> left!</p>
+                </div>
+                <div class="modal-buttons">
+                    <button class="buy-now-btn">Buy Now</button>
+                    <button class="add-cart-btn"><i class="fa-solid fa-cart-shopping"></i>Add To Cart</button>
+                </div>
+                <div class="share-section">
+                    <h4>Share On:</h4>
+                    <div class="share-icons">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src = "script.js"></script>
 </body>

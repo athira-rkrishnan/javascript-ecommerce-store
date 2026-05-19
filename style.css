@@ -643,6 +643,256 @@ option:hover {
     padding: 0.2rem;
 }
 
+.product-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+.product-modal {
+    width: 1100px;
+    max-width: 100%;
+    height: 95vh;
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    animation: modalOpen 0.3s ease;
+}
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.modal-left {
+    flex: 1;
+}
+.main-product-image {
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+.modal-main-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+.product-thumbnails {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.thumbnail {
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.active-thumbnail {
+    border-color: #4B0082;
+}
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.modal-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.5rem 0 1.5rem 0;
+}
+.modal-product-title {
+    font-size: 1.8rem;
+    color: #222;
+}
+.modal-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.rating-stars {
+    font-size: 0.8rem;
+    color: #f4b400;
+}
+.rating-text {
+    color: #777;
+}
+.modal-price-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.discounted-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111;
+}
+.original-price {
+    color: #888;
+    text-decoration: line-through;
+}
+.discount-percent {
+    color: #0a8f3d;
+    font-weight: 600;
+}
+.tax-text {
+    color: #0a8f3d;
+    font-size: 0.95rem;
+}
+.modal-description p {
+    margin-top: 0.5rem;
+    line-height: 1.4;
+    color: #555;
+}
+.colors-list {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+.color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+.active-color {
+    border-color: #000;
+}
+.red {
+    background: #e74c3c;
+}
+.black {
+    background: #222;
+}
+.green {
+    background: #7f8c8d;
+}
+.gray {
+    background: #dcdde1;
+}
+.blue {
+    background: #3c6382;
+}
+.sizes-list {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+}
+.size-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #bbb;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.active-size {
+    background: #4B0082;
+    color: #fff;
+    border: none;
+}
+.quantity-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #f5f5f5;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+}
+.quantity-box button {
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.stock-text {
+    color: #555;
+}
+.stock-text span {
+    color: #e67e22;
+    font-weight: 700;
+}
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.buy-now-btn, .add-cart-btn {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.buy-now-btn {
+    background: #4B0082;
+    color: #fff;
+    border: none;
+}
+.add-cart-btn {
+    background: transparent;
+    border: 2px solid #4B0082;
+    color: #4B0082;
+}
+.fa-cart-shopping {
+    font-size: 1.2rem;
+    margin-right: 0.3rem;
+}
+.share-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.share-icons {
+    display: flex;
+    gap: 1rem;
+}
+.share-icons i {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: rgb(92, 88, 88);
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.share-icons i:hover {
+    background: #4B0082;
+    color: #fff;
+}
+
 @media screen and (max-width: 1024px) {
     .outer-container .header-top {
         justify-content: space-between;
@@ -930,4 +1180,7 @@ option:hover {
     }
     
 }
+
+
+
 
