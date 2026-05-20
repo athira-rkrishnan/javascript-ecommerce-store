@@ -98,7 +98,7 @@ function displayProducts(allProducts) {
         const productRatings = (product.rating?.rate || product.rating).toFixed(1); 
               
         productsListsContainer.innerHTML += `
-            <div class = "product-item">
+            <div class = "product-item" data-id="${product.id}">
                 <div class="wishlist-icon">
                     <i class="fa-regular fa-heart"></i>
                 </div>
@@ -114,7 +114,7 @@ function displayProducts(allProducts) {
                     <span class="original-price">₹${product.originalPrice}</span>
                     <span class="discount">${product.discountPercentage}% OFF</span>
                 </p>
-                <button>Add to Cart</button>
+                <button class = "view-details">View Details</button>
             </div>
         `;
     });
@@ -308,3 +308,40 @@ function sortProducts() {
     }
     displayProducts(sortedProducts);
 }
+
+
+const productModalOverlay = document.querySelector(".product-modal-overlay");
+document.addEventListener("click", (event) => {
+
+    const viewDetailsBtn = event.target.closest(".view-details");
+    console.log(viewDetailsBtn);
+    if(viewDetailsBtn) {
+        const productItem = viewDetailsBtn.closest(".product-item");
+        console.log(productItem);
+        const productId = Number(productItem.dataset.id);
+        console.log(productId);
+        const selectedProduct = allProductsData.find(product => 
+            product.id === productId
+        );
+        console.log(selectedProduct);
+        openProductModal(selectedProduct);
+    }
+
+});
+
+function openProductModal(product) {
+    productModalOverlay.style.display = "flex";
+    
+}
+
+const closeModal =  document.querySelector(".close-modal");
+closeModal.addEventListener("click", () => {
+    productModalOverlay.style.display = "none";
+});
+
+productModalOverlay.addEventListener("click", (event) => {
+    if(event.target === productModalOverlay) {
+        productModalOverlay.style.display = "none";
+    }
+});
+
