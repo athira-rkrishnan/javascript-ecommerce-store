@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Nike Air Max",
+    "description": "The Nike Air Max offers a perfect blend of style and comfort, making it an ideal choice for both casual wear and athletic activities. Its sleek design, combined with innovative cushioning technology, ensures a comfortable fit and excellent support for daily use.",
+    "category": "shoes",
+    "price": 41.67,
+    "rating": 4.5,
+    "stock": 10,
+    "discountPercentage": 10.48,
+    "image": "./assets/images/nikeshoe.webp"
+  },
+  {
+    "id": 2,
+    "title": "Adidas Running Shoes",
+    "description": "Experience unmatched comfort and performance with the Adidas Running Shoes. Designed for runners and active individuals, these shoes feature a lightweight build and a supportive sole that helps you stay energized during every stride. The sleek design combined with Adidas's signature craftsmanship ensures you'll look stylish while enjoying optimal support.",
+    "category": "shoes",
+    "price": 89.19,
+    "rating": 5.0,
+    "stock": 19,
+    "discountPercentage": 12.50,
+    "image": "./assets/images/adidasshoe.webp"
+  },
+  {
+    "id": 3,
+    "title": "Puma Sneakers",
+    "description": "With a trendy design, Puma Sneakers add a sporty touch to any outfit. They are lightweight and flexible, ensuring all-day comfort. Whether you're running errands or hitting the gym, these shoes offer the perfect blend of style and functionality.",
+    "category": "shoes",
+    "price": 30.21,
+    "rating": 3.1,
+    "stock": 25,
+    "discountPercentage": 20.18,
+    "image": "./assets/images/pumashoe.webp"
+  },
+  {
+    "id": 4,
+    "title": "Trendy & Stylish Loafers For Men",
+    "description": "Step into style with these trendy and stylish loafers designed for men. Crafted with attention to detail, these shoes combine modern fashion with comfort, making them perfect for both casual outings and semi-formal occasions.",
+    "category": "shoes",
+    "price": 104.20,
+    "rating": 4.2,
+    "stock": 6,
+    "discountPercentage": 5.90,
+    "image": "./assets/images/loafers.webp"
+  },
+  {
+    "id": 5,
+    "title": "BRUTON Exclusive Sneakers For Men",
+    "description": "Step up your style game with the BRUTON Exclusive Sneakers for Men. Crafted for comfort and designed to make a statement, these sneakers are perfect for casual outings or active days. The sleek and modern design, combined with high-quality materials, ensures you stay stylish and comfortable wherever you go.",
+    "category": "shoes",
+    "price": 104.19,
+    "rating": 3.9,
+    "stock": 8,
+    "discountPercentage": 15.30,
+    "image": "./assets/images/sneakershoe.webp"
+  }
+]
+

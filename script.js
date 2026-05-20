@@ -329,9 +329,26 @@ document.addEventListener("click", (event) => {
 
 });
 
+
+const modalMainImage = document.querySelector(".modal-main-image");
+const modalProductTitle = document.querySelector(".modal-product-title");
+const modalRatingText = document.querySelector(".modal-rating-text");
+const modalDiscountedPrice = document.querySelector(".modal-discounted-price");
+const modalOriginalPrice = document.querySelector(".modal-original-price");
+const modalDiscountPercent = document.querySelector(".modal-discount-percent");
+const modalDescription = document.querySelector(".modalDescription");
+
 function openProductModal(product) {
     productModalOverlay.style.display = "flex";
-    
+
+    modalMainImage.src = product.thumbnail || product.image;
+    modalProductTitle.textContent = product.title;
+    modalRatingText.textContent = `${(product.rating?.rate || product.rating).toFixed(1)} Ratings`;
+    modalDiscountedPrice.textContent =  `Rs.${product.discountedPrice}`;
+    modalOriginalPrice.textContent = `Rs.${product.originalPrice}`;
+    modalDiscountPercent.textContent = `${product.discountPercentage}% OFF`;
+    modalDescription.textContent = product.description;
+
 }
 
 const closeModal =  document.querySelector(".close-modal");

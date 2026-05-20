@@ -688,7 +688,7 @@ option:hover {
 .modal-left {
     flex: 1;
 }
-.main-product-image {
+.modal-main-product-image {
     background: #f5f5f5;
     border-radius: 20px;
     padding: 1rem;
@@ -699,12 +699,12 @@ option:hover {
     height: 420px;
     object-fit: cover;
 }
-.product-thumbnails {
+.modal-product-thumbnails {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
 }
-.thumbnail {
+.modal-thumbnail {
     width: 90px;
     height: 90px;
     border-radius: 15px;
@@ -713,10 +713,10 @@ option:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-.active-thumbnail {
+.modal-active-thumbnail {
     border-color: #4B0082;
 }
-.thumbnail img {
+.modal-thumbnail img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -737,11 +737,11 @@ option:hover {
     align-items: center;
     gap: 1rem;
 }
-.rating-stars {
+.modal-rating-stars {
     font-size: 0.8rem;
     color: #f4b400;
 }
-.rating-text {
+.modal-rating-text {
     color: #777;
 }
 .modal-price-section {
@@ -750,41 +750,41 @@ option:hover {
     gap: 1rem;
     flex-wrap: wrap;
 }
-.discounted-price {
+.modal-discounted-price {
     font-size: 1.4rem;
     font-weight: 700;
     color: #111;
 }
-.original-price {
+.modal-original-price {
     color: #888;
     text-decoration: line-through;
 }
-.discount-percent {
+.modal-discount-percent {
     color: #0a8f3d;
     font-weight: 600;
 }
-.tax-text {
+.modal-tax-text {
     color: #0a8f3d;
     font-size: 0.95rem;
 }
-.modal-description p {
+.modal-description .modalDescription {
     margin-top: 0.5rem;
     line-height: 1.4;
     color: #555;
 }
-.colors-list {
+.modal-colors-list {
     display: flex;
     gap: 1rem;
     margin-top: 0.8rem;
 }
-.color {
+.modal-color {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
 }
-.active-color {
+.modal-active-color {
     border-color: #000;
 }
 .red {
@@ -802,13 +802,13 @@ option:hover {
 .blue {
     background: #3c6382;
 }
-.sizes-list {
+.modal-sizes-list {
     display: flex;
     gap: 0.8rem;
     flex-wrap: wrap;
     margin-top: 0.8rem;
 }
-.size-btn {
+.modal-size-btn {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -817,18 +817,18 @@ option:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-.active-size {
+.modal-active-size {
     background: #4B0082;
     color: #fff;
     border: none;
 }
-.quantity-section {
+.modal-quantity-section {
     display: flex;
     align-items: center;
     gap: 1.5rem;
     margin-top: 0.5rem;
 }
-.quantity-box {
+.modal-quantity-box {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -836,16 +836,16 @@ option:hover {
     padding: 0.7rem 1rem;
     border-radius: 10px;
 }
-.quantity-box button {
+.modal-quantity-box button {
     border: none;
     background: transparent;
     font-size: 1.1rem;
     cursor: pointer;
 }
-.stock-text {
+.modal-stock-text {
     color: #555;
 }
-.stock-text span {
+.modal-stock-text span {
     color: #e67e22;
     font-weight: 700;
 }
@@ -876,17 +876,17 @@ option:hover {
     font-size: 1.2rem;
     margin-right: 0.3rem;
 }
-.share-section {
+.modal-share-section {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-top: 0.5rem;
 }
-.share-icons {
+.modal-share-icons {
     display: flex;
     gap: 1rem;
 }
-.share-icons i {
+.modal-share-icons i {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -898,7 +898,7 @@ option:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-.share-icons i:hover {
+.modal-share-icons i:hover {
     background: #4B0082;
     color: #fff;
 }
@@ -943,7 +943,7 @@ option:hover {
     .modal-left {
         flex: 0.95;
     }
-    .main-product-image {
+    .modal-main-product-image {
         padding: 1rem;
     }
     .modal-main-image {
@@ -951,11 +951,11 @@ option:hover {
         height: 340px;
         object-fit: cover;
     }
-    .product-thumbnails {
+    .modal-product-thumbnails {
         gap: 0.8rem;
         flex-wrap: wrap;
     }
-    .thumbnail {
+    .modal-thumbnail {
         width: 75px;
         height: 75px;
     }
@@ -971,49 +971,52 @@ option:hover {
     .modal-rating {
         gap: 0.7rem;
     }
-    .rating-stars {
+    .modal-rating-stars {
         font-size: 0.8rem;
     }
-    .rating-text {
+    .modal-rating-text {
         font-size: 0.9rem;
     }
-    .discounted-price {
+    .modal-discounted-price {
         font-size: 1.5rem;
     }
-    .original-price,
-    .discount-percent {
+    .modal-original-price {
+        text-decoration: line-through;
+    }
+    .modal-original-price,
+    .modal-discount-percent {
         font-size: 0.95rem;
     }
-    .tax-text {
+    .modal-tax-text {
         font-size: 0.9rem;
     }
-    .modal-description p {
+    .modal-description .modalDescription {
         font-size: 0.95rem;
         line-height: 1.6;
     }
-    .colors-list {
+    .modal-colors-list {
         gap: 0.8rem;
     }
-    .color {
+    .modal-color {
         width: 24px;
         height: 24px;
     }
-    .sizes-list {
+    .modal-sizes-list {
         gap: 0.7rem;
     }
-    .size-btn {
+    .modal-size-btn {
         width: 38px;
         height: 38px;
         font-size: 0.9rem;
     }
-    .quantity-section {
+    .modal-quantity-section {
         gap: 1rem;
         flex-wrap: wrap;
     }
-    .quantity-box {
+    .modal-quantity-box {
         padding: 0.6rem 0.9rem;
     }
-    .stock-text {
+    .modal-stock-text {
         font-size: 0.9rem;
     }
     .modal-buttons {
@@ -1024,15 +1027,15 @@ option:hover {
         padding: 0.85rem;
         font-size: 0.95rem;
     }
-    .share-section {
+    .modal-share-section {
         gap: 0.8rem;
         flex-wrap: wrap;
         padding-bottom: 1rem;  
     }
-    .share-icons {
+    .modal-share-icons {
         gap: 0.8rem;
     }
-    .share-icons i {
+    .modal-share-icons i {
         width: 36px;
         height: 36px;
         font-size: 0.9rem;
