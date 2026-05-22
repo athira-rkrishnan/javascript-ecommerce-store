@@ -269,34 +269,29 @@ const productImages = {
     },
     shoes: {
         1: [
-            "assets/images/nike-main.webp",
-            "assets/images/nike-side.webp",
-            "assets/images/nike-top.webp",
-            "assets/images/nike-back.webp"
+            "assets/images/shoes/nike-side.webp",
+            "assets/images/shoes/nike-top.webp",
+            "assets/images/shoes/nike-back.webp"
         ],
         2: [
-            "assets/images/adidas-main.webp",
-            "assets/images/adidas-side.webp",
-            "assets/images/adidas-top.webp",
-            "assets/images/adidas-back.webp"
+            "assets/images/shoes/adidas-side.webp",
+            "assets/images/shoes/adidas-top.webp",
+            "assets/images/shoes/adidas-back.webp"
         ],
         3: [
-            "assets/images/nike-main.webp",
-            "assets/images/nike-side.webp",
-            "assets/images/nike-top.webp",
-            "assets/images/nike-back.webp"
+            "assets/images/shoes/puma-side.webp",
+            "assets/images/shoes/puma-top.webp",
+            "assets/images/shoes/puma-back.webp"
         ],
         4: [
-            "assets/images/nike-main.webp",
-            "assets/images/nike-side.webp",
-            "assets/images/nike-top.webp",
-            "assets/images/nike-back.webp"
+            "assets/images/shoes/loafers-side.webp",
+            "assets/images/shoes/loafers-top.webp",
+            "assets/images/shoes/loafers-back.webp"
         ],
         5: [
-            "assets/images/nike-main.webp",
-            "assets/images/nike-side.webp",
-            "assets/images/nike-top.webp",
-            "assets/images/nike-back.webp"
+            "assets/images/shoes/sneaker-side.webp",
+            "assets/images/shoes/sneaker-top.webp",
+            "assets/images/shoes/sneaker-back.webp"
         ]
     }
 };
@@ -376,6 +371,7 @@ async function fetchProducts() {
 
             return {
                 ...product,
+                uniqueId: `${product.category}-${product.id}`,
                 originalPrice,
                 discountPercentage,
                 discountedPrice, 
@@ -408,7 +404,7 @@ function displayProducts(allProducts) {
         const productRatings = (product.rating?.rate || product.rating).toFixed(1); 
               
         productsListsContainer.innerHTML += `
-            <div class = "product-item" data-id="${product.id}">
+            <div class = "product-item" data-id="${product.uniqueId}">
                 <div class="wishlist-icon">
                     <i class="fa-regular fa-heart"></i>
                 </div>
@@ -628,10 +624,10 @@ document.addEventListener("click", (event) => {
     if(viewDetailsBtn) {
         const productItem = viewDetailsBtn.closest(".product-item");
         console.log(productItem);
-        const productId = Number(productItem.dataset.id);
+        const productId = productItem.dataset.id;
         console.log(productId);
         const selectedProduct = allProductsData.find(product => 
-            product.id === productId
+            product.uniqueId === productId
         );
         console.log(selectedProduct);
         openProductModal(selectedProduct);
@@ -652,7 +648,7 @@ const modalDescription = document.querySelector(".modalDescription");
 function openProductModal(product) {
     productModalOverlay.style.display = "flex";
 
-    modalMainImage.src = product.thumbnail || product.image;
+    modalMainImage.src = product.images?.[0];
     modalThumbnailsContainer.innerHTML = "";
     modalProductTitle.textContent = product.title;
     modalRatingText.textContent = `${(product.rating?.rate || product.rating).toFixed(1)} Ratings`;

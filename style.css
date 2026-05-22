@@ -455,7 +455,7 @@ option:hover {
 .product-item img {
     width: 100%;
     height: 220px;
-    object-fit: cover;
+    /* object-fit: cover;  */
     border-radius: 0.8rem;
     margin-bottom: 1rem;
 }
@@ -697,7 +697,7 @@ option:hover {
 .modal-main-image {
     width: 100%;
     height: 420px;
-    object-fit: cover;
+    /* object-fit: cover;  */
 }
 .modal-product-thumbnails {
     display: flex;
@@ -724,6 +724,11 @@ option:hover {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.modal-thumbnail:hover img {
+    transform: scale(1.1);
 }
 .modal-right {
     flex: 1;
