@@ -8,7 +8,7 @@
     "rating": 4.5,
     "stock": 10,
     "discountPercentage": 10.48,
-    "image": "./assets/images/nikeshoe.webp"
+    "image": "./assets/images/shoes/nike-main.webp"
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "rating": 5.0,
     "stock": 19,
     "discountPercentage": 12.50,
-    "image": "./assets/images/adidasshoe.webp"
+    "image": "./assets/images/shoes/adidas-main.webp"
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "rating": 3.1,
     "stock": 25,
     "discountPercentage": 20.18,
-    "image": "./assets/images/pumashoe.webp"
+    "image": "./assets/images/shoes/puma-main.webp"
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "rating": 4.2,
     "stock": 6,
     "discountPercentage": 5.90,
-    "image": "./assets/images/loafers.webp"
+    "image": "./assets/images/shoes/loafers-main.webp"
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "rating": 3.9,
     "stock": 8,
     "discountPercentage": 15.30,
-    "image": "./assets/images/sneakershoe.webp"
+    "image": "./assets/images/shoes/sneaker-main.webp"
   }
 ]
 

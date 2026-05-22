@@ -712,6 +712,9 @@ option:hover {
     border: 2px solid transparent;
     cursor: pointer;
     transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .modal-active-thumbnail {
     border-color: #4B0082;
@@ -720,6 +723,7 @@ option:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 .modal-right {
     flex: 1;
