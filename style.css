@@ -81,7 +81,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    flex-basis: 30%;
+    flex-basis: 33%;
+    gap: 0.7rem;
 }
 .header .nav-actions .search-box {
     display: flex;
@@ -104,6 +105,28 @@
 .nav-actions .search-box .search-icon i {
     font-size: 1.2rem;
     color: #4B0082;
+}
+.header .nav-actions .wishlist-navbar {
+    position: relative;
+    cursor: pointer;
+}
+.nav-actions .wishlist-navbar i {
+    font-size: 1.5rem;
+    color: #222;
+}
+.nav-actions .wishlist-count {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .header .nav-actions .shoppg-cart {
     padding: 0.8rem;
