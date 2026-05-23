@@ -669,7 +669,7 @@ option:hover {
 .wishlist-page {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -100%;
     width: 420px;
     max-width: 100%;
     height: 100vh;

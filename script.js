@@ -696,3 +696,18 @@ document.addEventListener("click", (event) => {
 function updateWishlistCount() {
     wishlistCount.textContent = wishlistProducts.length;
 }
+
+const wishlistNavbar = document.querySelector(".wishlist-navbar");
+const wishlistPage = document.querySelector(".wishlist-page");
+const closeWishlist = document.querySelector(".close-wishlist");
+const wishlistProductsContainer = document.querySelector(".wishlist-products-container");
+const wishlistTotalItems = document.querySelector(".wishlist-total-items");
+
+wishlistNavbar.addEventListener("click", () => {
+    wishlistPage.classList.add("active");
+});
+
+closeWishlist.addEventListener("click", () => {
+    wishlistPage.classList.remove("active");
+});
+
