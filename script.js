@@ -751,7 +751,20 @@ document.addEventListener("click", (event) => {
             );
         updateWishlistCount();
         renderWishlistProducts();
+        updateWishlistIcons(productId);
     }
 });
+
+
+function updateWishlistIcons(productId) {
+    const productCard = document.querySelector(`.product-item[data-id="${productId}"]`);
+    if(productCard) {
+        const wishlistBtn = productCard.querySelector(".wishlist-icon");
+        wishlistBtn.classList.remove("active");
+        const icon = wishlistBtn.querySelector("i");
+        icon.classList.remove("fa-solid");
+        icon.classList.add("fa-regular");
+    }
+}
 
 
