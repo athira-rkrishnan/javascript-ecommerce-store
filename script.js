@@ -705,9 +705,41 @@ const wishlistTotalItems = document.querySelector(".wishlist-total-items");
 
 wishlistNavbar.addEventListener("click", () => {
     wishlistPage.classList.add("active");
+    renderWishlistProducts();
 });
 
 closeWishlist.addEventListener("click", () => {
     wishlistPage.classList.remove("active");
 });
+
+function renderWishlistProducts() {
+    wishlistProductsContainer.innerHTML = "";
+    wishlistTotalItems.textContent = `${wishlistProducts.length} Items`;
+    if(wishlistProducts.length === 0) {
+        wishlistProductsContainer.innerHTML = `
+            <p class="empty-wishlist">
+                Wishlist is empty
+            </p>
+        `;
+        return;
+    }
+    wishlistProducts.forEach(product => {
+        const productImage = product.images?.[0] || product.image;
+        wishlistProductsContainer.innerHTML += `
+            <div class="wishlist-product">
+                <img src="${productImage}">
+                <div class="wishlist-product-details">
+                    <h4>${product.title}</h4>
+                    <p class="wishlist-product-price">
+                        ₹${product.discountedPrice}
+                    </p>
+                    <button class="remove-wishlist-btn" data-id="${product.uniqueId}">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
+
 
