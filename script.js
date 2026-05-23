@@ -796,3 +796,15 @@ function updateWishlistIcons(productId) {
 }
 
 
+const shoppingCart = document.querySelector(".shoppg-cart");
+const cartPage = document.querySelector(".cart-page");
+const closeCart = document.querySelector(".close-cart");
+
+shoppingCart.addEventListener("click", () => {
+    cartPage.classList.add("active");
+});
+
+closeCart.addEventListener("click", () => {
+    cartPage.classList.remove("active");
+});
+

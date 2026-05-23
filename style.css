@@ -130,6 +130,7 @@
 }
 .header .nav-actions .shoppg-cart {
     padding: 0.8rem;
+    cursor: pointer;
 }
 .nav-actions .shoppg-cart i {
     font-size: 1.2rem;
@@ -1143,7 +1144,7 @@ option:hover {
 .cart-page {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -100%;
     width: 100%;
     max-width: 1000px;
     height: 100vh;
@@ -1500,6 +1501,10 @@ option:hover {
         right: 15px;
         font-size: 1.3rem;
     }
+    .cart-page {
+        width: 100%;
+        max-width: 900px;
+    }
     .cart-content {
         grid-template-columns: 1fr;
     }
@@ -1628,9 +1633,6 @@ option:hover {
     .outer-container .footer .footer-column {
         flex: 1 1 calc(50% - 1rem);
     } 
-    .cart-page {
-        padding: 1rem;
-    }
     .cart-product {
         flex-direction: column;
     }
