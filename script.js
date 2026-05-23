@@ -650,6 +650,7 @@ document.addEventListener("click", (event) => {
 const modalMainImage = document.querySelector(".modal-main-image");
 const modalThumbnailsContainer = document.querySelector(".modal-product-thumbnails");
 const modalProductTitle = document.querySelector(".modal-product-title");
+const modalRatingStars = document.querySelector(".modal-rating-stars");
 const modalRatingText = document.querySelector(".modal-rating-text");
 const modalDiscountedPrice = document.querySelector(".modal-discounted-price");
 const modalOriginalPrice = document.querySelector(".modal-original-price");
@@ -658,15 +659,18 @@ const modalDescription = document.querySelector(".modalDescription");
 
 function openProductModal(product) {
     productModalOverlay.style.display = "flex";
+    const productRating = (product.rating?.rate || product.rating);
 
     modalMainImage.src = product.images?.[0];
     modalThumbnailsContainer.innerHTML = "";
     modalProductTitle.textContent = product.title;
-    modalRatingText.textContent = `${(product.rating?.rate || product.rating).toFixed(1)} Ratings`;
+    modalRatingText.textContent = `${productRating.toFixed(1)} Ratings`;
     modalDiscountedPrice.textContent =  `Rs.${product.discountedPrice}`;
     modalOriginalPrice.textContent = `Rs.${product.originalPrice}`;
     modalDiscountPercent.textContent = `${product.discountPercentage}% OFF`;
     modalDescription.textContent = product.description;
+
+    generateRatingStars(productRating);
 
     product.images.forEach((image, index) => {
         modalThumbnailsContainer.innerHTML += `
@@ -675,8 +679,6 @@ function openProductModal(product) {
             </div>
         `;
     });
-
-
 }
 
 const closeModal =  document.querySelector(".close-modal");
@@ -690,6 +692,32 @@ productModalOverlay.addEventListener("click", (event) => {
     }
 });
 
+
+function generateRatingStars(rating) {
+    modalRatingStars.innerHTML = "";
+
+    const roundedRating = Math.round(rating * 10) / 10;
+    const fullStars = Math.floor(roundedRating);
+    const decimalPart = roundedRating - fullStars;
+    const halfStar = decimalPart >= 0.5;
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+    for(let i = 0; i < fullStars; i++) {
+        modalRatingStars.innerHTML += `
+            <i class="fa-solid fa-star"></i>
+        `;
+    }
+    if(halfStar) {
+        modalRatingStars.innerHTML += `
+            <i class="fa-solid fa-star-half-stroke"></i>
+        `;
+    }
+    for(let i = 0; i < emptyStars; i++) {
+        modalRatingStars.innerHTML += `
+            <i class="fa-regular fa-star"></i>
+        `;
+    }
+}
 
 
 let wishlistProducts = [];
@@ -807,4 +835,6 @@ shoppingCart.addEventListener("click", () => {
 closeCart.addEventListener("click", () => {
     cartPage.classList.remove("active");
 });
+
+
 
