@@ -344,7 +344,17 @@ beautyToggleBtn.addEventListener("click", () => {
 
 function showLoadingSkeleton() {
     productsListsContainer.innerHTML = "";
-    for(let i = 0; i < 12; i++) {
+    let skeletonCount;
+    if(window.innerWidth <= 480) {
+        skeletonCount = 4;
+    }
+    else if(window.innerWidth <= 768) {
+        skeletonCount = 8;
+    }
+    else {
+        skeletonCount = 12;
+    }
+    for(let i = 0; i < skeletonCount; i++) {
         productsListsContainer.innerHTML += `
             <div class="skeleton-product-card">
                 <div class="skeleton-image"></div>
