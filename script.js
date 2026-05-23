@@ -742,4 +742,16 @@ function renderWishlistProducts() {
     });
 }
 
+document.addEventListener("click", (event) => {
+    const removeBtn = event.target.closest(".remove-wishlist-btn");
+    if(removeBtn) {
+        const productId = removeBtn.dataset.id;
+        wishlistProducts = wishlistProducts.filter(product =>
+                product.uniqueId !== productId
+            );
+        updateWishlistCount();
+        renderWishlistProducts();
+    }
+});
+
 
