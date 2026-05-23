@@ -341,7 +341,25 @@ beautyToggleBtn.addEventListener("click", () => {
     beautyToggleBtn.classList.toggle("rotate");
 });
  
+
+function showLoadingSkeleton() {
+    productsListsContainer.innerHTML = "";
+    for(let i = 0; i < 12; i++) {
+        productsListsContainer.innerHTML += `
+            <div class="skeleton-product-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-text skeleton-category"></div>
+                <div class="skeleton-text skeleton-title"></div>
+                <div class="skeleton-text skeleton-rating"></div>
+                <div class="skeleton-text skeleton-price"></div>
+                <div class="skeleton-button"></div>
+            </div>
+        `;
+    }
+}
+
 async function fetchProducts() {
+    showLoadingSkeleton();
     try {
         const [dummyJsonApiResponse, fakeStoreApiResponse, shoesResponse] = await Promise.all([
             fetch("https://dummyjson.com/products"),
