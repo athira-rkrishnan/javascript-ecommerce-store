@@ -407,7 +407,8 @@ async function fetchProducts() {
                 discountPercentage,
                 discountedPrice, 
                 stock: stockValue,
-                images: finalImages
+                images: finalImages,
+                variations: generateProductVariations(product.category)
             };
         });
         console.log(allProducts);
@@ -666,6 +667,11 @@ const modalQuantityValue = document.querySelector(".modal-quantity-value");
 const modalStockValue = document.querySelector(".modal-stockValue");
 const modalAddCartBtn = document.querySelector(".modal-add-cart-btn");
 
+const modalProductColors = document.querySelector(".modal-product-colors");
+const modalColorsList = document.querySelector(".modal-colors-list");
+const modalProductSizes = document.querySelector(".modal-product-sizes");
+const modalSizesList = document.querySelector(".modal-sizes-list");
+
 function openProductModal(product) {
     modalQuantity = 1;
     currentModalProduct = product;
@@ -729,6 +735,7 @@ function openProductModal(product) {
     }   
 
     updateQuantityButtons();
+    renderProductVariations(product);
 }
 
 modalPlusBtn.addEventListener("click", () => {
@@ -800,6 +807,92 @@ function generateRatingStars(rating) {
         `;
     }
 }
+
+
+function generateProductVariations(category) {
+    switch(category.toLowerCase()) {
+        case "shoes":
+            return {
+                colors: ["red", "black", "blue", "white"],
+                sizes: [6, 7, 8, 9, 10]
+            };
+        case "men's clothing":
+        case "women's clothing":
+            return {
+                colors: ["black", "gray", "blue", "green"],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            };
+        case "beauty":
+            return {
+                colors: ["pink", "red", "brown", "nude"],
+                sizes: []
+            };
+        case "fragrances":
+            return {
+                colors: [],
+                sizes: ["50ml", "100ml", "150ml", "250ml"]
+            };
+        case "furniture":
+            return {
+                colors: ["brown", "black", "white"],
+                sizes: []
+            };
+        case "electronics":
+            return {
+                colors: ["black", "silver", "gray"],
+                sizes: ["128GB", "256GB", "512GB"]
+            };
+        case "groceries":
+            return {
+                colors: [],
+                sizes: ["500g", "1kg", "2kg"]
+            };
+        case "jewelery":
+            return {
+                colors: ["gold", "silver", "rose-gold"],
+                sizes: [6, 7, 8]
+            };
+        default:
+            return {
+                colors: [],
+                sizes: []
+            };
+    }
+}
+
+function renderProductVariations(product) {
+    const {colors, sizes} = product.variations;
+    modalColorsList.innerHTML = "";
+    modalSizesList.innerHTML = "";
+
+    if(colors.length > 0) {
+        modalProductColors.style.display = "block";
+        colors.forEach((color, index) => {
+            modalColorsList.innerHTML += `
+                <span class="modal-color ${color} ${index === 0 ? "modal-active-color" : ""}" data-color="${color}"></span>
+            `;
+        });
+    }
+    else {
+        modalProductColors.style.display = "none";
+    }
+
+    if(sizes.length > 0) {
+        modalProductSizes.style.display = "block";
+        sizes.forEach((size, index) => {
+            modalSizesList.innerHTML += `
+                <button class="modal-size-btn ${index === 0 ? "modal-active-size" : ""}" data-size="${size}">
+                    ${size}
+                </button>
+            `;
+        });
+    }
+    else {
+        modalProductSizes.style.display = "none";
+    }
+}
+
+
 
 
 let wishlistProducts = [];

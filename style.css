@@ -951,7 +951,8 @@ option:hover {
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid transparent;
+   /* border: 2px solid transparent; */
+    border: 1px solid #c8c0c0;
 }
 .modal-active-color {
     border-color: #000;
@@ -963,13 +964,34 @@ option:hover {
     background: #222;
 }
 .green {
-    background: #7f8c8d;
+    background: #33976f;
 }
 .gray {
-    background: #dcdde1;
+    background: #9e9fa2;
+}
+.silver {
+    background: #c0c0c0;
+}
+.gold {
+    background: #EFBF04;
+}
+.rose-gold {
+    background: #DEA193;
 }
 .blue {
     background: #3c6382;
+}
+.white {
+    background: #ffffff;
+}
+.pink {
+    background: #ee49a1;
+}
+.brown {
+    background: #432616;
+}
+.nude {
+    background: #F2D2BD;
 }
 .modal-sizes-list {
     display: flex;
@@ -978,8 +1000,8 @@ option:hover {
     margin-top: 0.8rem;
 }
 .modal-size-btn {
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     border: 1px solid #bbb;
     background: #fff;
@@ -1405,7 +1427,7 @@ option:hover {
     .modal-main-image {
         width: 100%;
         height: 340px;
-        object-fit: cover;
+       /* object-fit: cover;  */
     }
     .modal-product-thumbnails {
         gap: 0.8rem;
@@ -1456,14 +1478,15 @@ option:hover {
     .modal-color {
         width: 24px;
         height: 24px;
+        border: 1px solid #c8c0c0;
     }
     .modal-sizes-list {
         gap: 0.7rem;
     }
     .modal-size-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 0.9rem;
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
     }
     .modal-quantity-section {
         gap: 1rem;
