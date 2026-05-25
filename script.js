@@ -1,4 +1,6 @@
 let allProductsData = [];
+let currentModalProduct = null;
+let modalQuantity = 1;
 
 const productImages = {
     beauty: {
@@ -658,10 +660,15 @@ const modalDiscountedPrice = document.querySelector(".modal-discounted-price");
 const modalOriginalPrice = document.querySelector(".modal-original-price");
 const modalDiscountPercent = document.querySelector(".modal-discount-percent");
 const modalDescription = document.querySelector(".modalDescription");
+const modalMinusBtn = document.querySelector(".modal-minus-btn");
+const modalPlusBtn = document.querySelector(".modal-plus-btn");
+const modalQuantityValue = document.querySelector(".modal-quantity-value");
 const modalStockValue = document.querySelector(".modal-stockValue");
 const addCartBtn = document.querySelector(".add-cart-btn");
 
 function openProductModal(product) {
+    modalQuantity = 1;
+    currentModalProduct = product;
     productModalOverlay.style.display = "flex";
     const productRating = (product.rating?.rate || product.rating);
 
@@ -673,6 +680,7 @@ function openProductModal(product) {
     modalOriginalPrice.textContent = `Rs.${product.originalPrice}`;
     modalDiscountPercent.textContent = `${product.discountPercentage}% OFF`;
     modalDescription.textContent = product.description;
+    modalQuantityValue.textContent = modalQuantity;
 
     generateRatingStars(productRating);
 
@@ -704,6 +712,40 @@ function openProductModal(product) {
         addCartBtn.disabled = false;
         addCartBtn.style.opacity = "1";
         addCartBtn.style.cursor = "pointer";
+    }   
+
+    updateQuantityButtons();
+}
+
+modalPlusBtn.addEventListener("click", () => {
+    if(modalQuantity < currentModalProduct.stock) {
+        modalQuantity++;
+        modalQuantityValue.textContent = modalQuantity;
+        updateQuantityButtons();
+    }
+});
+
+modalMinusBtn.addEventListener("click", () => {
+    if(modalQuantity > 1) {
+        modalQuantity--;
+        modalQuantityValue.textContent = modalQuantity;
+        updateQuantityButtons();
+    }
+});
+
+function updateQuantityButtons() {
+    if(modalQuantity >= currentModalProduct.stock) {
+        modalPlusBtn.disabled = true;
+    }
+    else {
+        modalPlusBtn.disabled = false;
+    }
+
+    if(modalQuantity <= 1) {
+        modalMinusBtn.disabled = true;
+    }
+    else {
+        modalMinusBtn.disabled = false;
     }
 }
 
