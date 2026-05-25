@@ -694,15 +694,15 @@ function openProductModal(product) {
 
  
     const modalThumbnails = document.querySelectorAll(".modal-thumbnail");
-    modalThumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener("click", () => {
-            const thumbnailImage = thumbnail.querySelector("img").src;
-            modalMainImage.src = thumbnailImage;
-            modalThumbnails.forEach(item => {
-                item.classList.remove("modal-active-thumbnail");
-            });
-            thumbnail.classList.add("modal-active-thumbnail");
+    modalThumbnailsContainer.addEventListener("click", (event) => {
+        const thumbnail = event.target.closest(".modal-thumbnail");
+        if(!thumbnail) return;
+        const thumbnailImage = thumbnail.querySelector("img").src;
+        modalMainImage.src = thumbnailImage;
+        modalThumbnails.forEach(item => {
+            item.classList.remove("modal-active-thumbnail");
         });
+        thumbnail.classList.add("modal-active-thumbnail");
     });
 
 
