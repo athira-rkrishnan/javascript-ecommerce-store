@@ -392,6 +392,7 @@ async function fetchProducts() {
             const originalPrice = Math.floor(product.price * exchangeRate);
             const discountPercentage = Math.ceil(product.discountPercentage || (Math.random() * 20) + 5);
             const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercentage / 100));
+            const stockValue = product.stock || Math.floor(Math.random() * 20) + 1;
 
             const productThumbnail = product.images?.[0] || product.image;
             const categoryImages = productImages[product.category]?.[product.id];
@@ -403,6 +404,7 @@ async function fetchProducts() {
                 originalPrice,
                 discountPercentage,
                 discountedPrice, 
+                stock: stockValue,
                 images: finalImages
             };
         });
@@ -656,6 +658,8 @@ const modalDiscountedPrice = document.querySelector(".modal-discounted-price");
 const modalOriginalPrice = document.querySelector(".modal-original-price");
 const modalDiscountPercent = document.querySelector(".modal-discount-percent");
 const modalDescription = document.querySelector(".modalDescription");
+const modalStockValue = document.querySelector(".modal-stockValue");
+const addCartBtn = document.querySelector(".add-cart-btn");
 
 function openProductModal(product) {
     productModalOverlay.style.display = "flex";
@@ -679,6 +683,28 @@ function openProductModal(product) {
             </div>
         `;
     });
+
+    if(product.stock === 0) {
+        modalStockValue.textContent = "Out of Stock";
+        modalStockValue.style.color = "#ff0000";
+        addCartBtn.disabled = true;
+        addCartBtn.style.opacity = "0.6";
+        addCartBtn.style.cursor = "not-allowed";
+    }
+    else if(product.stock <= 5) {
+        modalStockValue.textContent = `Only ${product.stock} items left!`;
+        modalStockValue.style.color = "#ff9800";
+        addCartBtn.disabled = false;
+        addCartBtn.style.opacity = "1";
+        addCartBtn.style.cursor = "pointer";
+    }
+    else {
+        modalStockValue.textContent = `${product.stock} items available`;
+        modalStockValue.style.color = "#00a63e";
+        addCartBtn.disabled = false;
+        addCartBtn.style.opacity = "1";
+        addCartBtn.style.cursor = "pointer";
+    }
 }
 
 const closeModal =  document.querySelector(".close-modal");
