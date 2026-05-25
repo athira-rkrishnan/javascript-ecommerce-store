@@ -664,7 +664,7 @@ const modalMinusBtn = document.querySelector(".modal-minus-btn");
 const modalPlusBtn = document.querySelector(".modal-plus-btn");
 const modalQuantityValue = document.querySelector(".modal-quantity-value");
 const modalStockValue = document.querySelector(".modal-stockValue");
-const addCartBtn = document.querySelector(".add-cart-btn");
+const modalAddCartBtn = document.querySelector(".modal-add-cart-btn");
 
 function openProductModal(product) {
     modalQuantity = 1;
@@ -692,26 +692,40 @@ function openProductModal(product) {
         `;
     });
 
+ 
+    const modalThumbnails = document.querySelectorAll(".modal-thumbnail");
+    modalThumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener("click", () => {
+            const thumbnailImage = thumbnail.querySelector("img").src;
+            modalMainImage.src = thumbnailImage;
+            modalThumbnails.forEach(item => {
+                item.classList.remove("modal-active-thumbnail");
+            });
+            thumbnail.classList.add("modal-active-thumbnail");
+        });
+    });
+
+
     if(product.stock === 0) {
         modalStockValue.textContent = "Out of Stock";
         modalStockValue.style.color = "#ff0000";
-        addCartBtn.disabled = true;
-        addCartBtn.style.opacity = "0.6";
-        addCartBtn.style.cursor = "not-allowed";
+        modalAddCartBtn.disabled = true;
+        modalAddCartBtn.style.opacity = "0.6";
+        modalAddCartBtn.style.cursor = "not-allowed";
     }
     else if(product.stock <= 5) {
         modalStockValue.textContent = `Only ${product.stock} items left!`;
         modalStockValue.style.color = "#ff9800";
-        addCartBtn.disabled = false;
-        addCartBtn.style.opacity = "1";
-        addCartBtn.style.cursor = "pointer";
+        modalAddCartBtn.disabled = false;
+        modalAddCartBtn.style.opacity = "1";
+        modalAddCartBtn.style.cursor = "pointer";
     }
     else {
         modalStockValue.textContent = `${product.stock} items available`;
         modalStockValue.style.color = "#00a63e";
-        addCartBtn.disabled = false;
-        addCartBtn.style.opacity = "1";
-        addCartBtn.style.cursor = "pointer";
+        modalAddCartBtn.disabled = false;
+        modalAddCartBtn.style.opacity = "1";
+        modalAddCartBtn.style.cursor = "pointer";
     }   
 
     updateQuantityButtons();

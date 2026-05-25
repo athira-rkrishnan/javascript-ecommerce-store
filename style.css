@@ -1023,7 +1023,7 @@ option:hover {
     gap: 1rem;
     margin-top: 0.5rem;
 }
-.buy-now-btn, .add-cart-btn {
+.modal-buy-now-btn, .modal-add-cart-btn {
     flex: 1;
     padding: 0.8rem;
     border-radius: 30px;
@@ -1031,12 +1031,12 @@ option:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-.buy-now-btn {
+.modal-buy-now-btn {
     background: #4B0082;
     color: #fff;
     border: none;
 }
-.add-cart-btn {
+.modal-add-cart-btn {
     background: transparent;
     border: 2px solid #4B0082;
     color: #4B0082;
@@ -1478,8 +1478,8 @@ option:hover {
     .modal-buttons {
         gap: 0.8rem;
     }
-    .buy-now-btn,
-    .add-cart-btn {
+    .modal-buy-now-btn,
+    .modal-add-cart-btn {
         padding: 0.85rem;
         font-size: 0.95rem;
     }
