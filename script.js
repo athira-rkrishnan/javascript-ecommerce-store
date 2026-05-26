@@ -795,6 +795,7 @@ modalAddCartBtn.addEventListener("click", () => {
     }
     console.log(cartProducts);
     updateCartCount();
+    renderCartProducts();
 });
 
 const closeModal =  document.querySelector(".close-modal");
@@ -1055,9 +1056,6 @@ function updateCartCount() {
     cartCount.textContent = totalItems;
 }
 
-
-
-
 shoppingCart.addEventListener("click", () => {
     cartPage.classList.add("active");
 });
@@ -1066,5 +1064,91 @@ closeCart.addEventListener("click", () => {
     cartPage.classList.remove("active");
 });
 
+const cartProductsContainer = document.querySelector(".cart-products-container");
+const cartTotalItems = document.querySelector(".cart-total-items");
 
+function renderCartProducts() {
+    cartProductsContainer.innerHTML = "";
+    if(cartProducts.length === 0) {
+        cartProductsContainer.innerHTML = `
+            <p class="empty-cart">
+                Cart is empty
+            </p>
+        `;
+        cartTotalItems.textContent = "0 Items";
+        return;
+    }
+
+    let totalItems = 0;
+    cartProducts.forEach(product => {
+        totalItems += product.quantity;
+        const totalPrice = product.discountedPrice * product.quantity;
+        cartProductsContainer.innerHTML += `
+            <div class="cart-product">
+                <div class="cart-product-image">
+                    <img src="${product.images[0]}" alt="${product.title}">
+                </div>
+                <div class="cart-product-details">
+                    <div class="cart-product-top">
+                        <div>
+                            <h3 class="cart-product-title">
+                                ${product.title}
+                            </h3>
+                            <p class="cart-product-category">
+                                ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                            </p>
+                            ${
+                                product.selectedColor ?
+                                `<p>Color: ${product.selectedColor}</p>` : ""
+                            }
+                            ${
+                                product.selectedSize ?
+                                `<p>Size: ${product.selectedSize}</p>` : ""
+                            }
+                        </div>
+                        <button class="remove-cart-btn"
+                            data-id="${product.uniqueId}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="cart-product-price-section">
+                        <span class="cart-discounted-price">
+                            ₹${product.discountedPrice}
+                        </span>
+                        <span class="cart-original-price">
+                            ₹${product.originalPrice}
+                        </span>
+                        <span class="cart-discount-percent">
+                            ${product.discountPercentage}% OFF
+                        </span>
+                    </div>
+                    <div class="cart-bottom-section">
+                        <div class="cart-quantity-box">
+                            <button class="cart-minus-btn"
+                                data-id="${product.uniqueId}">
+                                -
+                            </button>
+                            <span class="cart-quantity">
+                                ${product.quantity}
+                            </span>
+                            <button class="cart-plus-btn"
+                                data-id="${product.uniqueId}">
+                                +
+                            </button>
+                        </div>
+                        <div class="cart-product-total">
+                            ₹${totalPrice}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    cartTotalItems.textContent = `${totalItems} Items`;
+    
+}
+
+
+renderCartProducts();
 

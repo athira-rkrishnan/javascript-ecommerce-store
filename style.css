@@ -1246,6 +1246,13 @@ option:hover {
     flex-direction: column;
     gap: 1.5rem;
 }
+.empty-cart {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #666;
+}
 .cart-product {
     background: #fff;
     border-radius: 20px;
