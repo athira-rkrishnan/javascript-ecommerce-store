@@ -1104,7 +1104,7 @@ function renderCartProducts() {
                             </p>
                             ${
                                 product.selectedColor ?
-                                `<p>Color: ${product.selectedColor}</p>` : ""
+                                `<p>Color: ${product.selectedColor.charAt(0).toUpperCase() + product.selectedColor.slice(1)}</p>` : ""
                             }
                             ${
                                 product.selectedSize ?
