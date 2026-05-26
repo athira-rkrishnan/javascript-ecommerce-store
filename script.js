@@ -1178,5 +1178,18 @@ function updateCartSummary() {
 }
 
 
+document.addEventListener("click", (event) => {
+    const removeBtn = event.target.closest(".remove-cart-btn");
+    if(removeBtn) {
+        const productId = removeBtn.dataset.id;
+        cartProducts = cartProducts.filter(product =>
+            product.uniqueId !== productId
+        );
+        renderCartProducts();
+        updateCartCount();
+    }
+});
+
+
 renderCartProducts();
 
