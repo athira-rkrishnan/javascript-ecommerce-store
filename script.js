@@ -902,6 +902,16 @@ modalColorsList.addEventListener("click", (event) => {
     selectedColor.classList.add("modal-active-color");
 });
 
+
+modalSizesList.addEventListener("click", (event) => {
+    const selectedSize = event.target.closest(".modal-size-btn");
+    if(!selectedSize) return;
+    document.querySelectorAll(".modal-size-btn").forEach(size => {
+        size.classList.remove("modal-active-size");
+    });
+    selectedSize.classList.add("modal-active-size");
+});
+
 let wishlistProducts = [];
 const wishlistCount = document.querySelector(".wishlist-count");
 
