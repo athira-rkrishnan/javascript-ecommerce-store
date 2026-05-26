@@ -1066,6 +1066,11 @@ closeCart.addEventListener("click", () => {
 
 const cartProductsContainer = document.querySelector(".cart-products-container");
 const cartTotalItems = document.querySelector(".cart-total-items");
+const summaryPrice = document.querySelector(".summary-price");
+const summaryDiscount = document.querySelector(".summary-discount");
+const deliveryChargeText = document.querySelector(".delivery-charge-text");
+const summaryTotalPrice = document.querySelector(".summary-total-price");
+const saveText = document.querySelector(".save-text");
 
 function renderCartProducts() {
     cartProductsContainer.innerHTML = "";
@@ -1146,7 +1151,30 @@ function renderCartProducts() {
     });
 
     cartTotalItems.textContent = `${totalItems} Items`;
-    
+    updateCartSummary();
+}
+
+
+function updateCartSummary() {
+    let totalOriginalPrice = 0;
+    let totalDiscountedPrice = 0;
+
+    cartProducts.forEach(product => {
+        totalOriginalPrice += product.originalPrice * product.quantity;
+        totalDiscountedPrice += product.discountedPrice * product.quantity;
+    });
+
+    const totalDiscount = totalOriginalPrice - totalDiscountedPrice;
+    let deliveryCharge = 0;
+    if(totalDiscountedPrice < 500 && cartProducts.length > 0) {
+        deliveryCharge = 50;
+    }
+    const finalTotal = totalDiscountedPrice + deliveryCharge;
+    summaryPrice.textContent = `₹${totalOriginalPrice}`;
+    summaryDiscount.textContent = `-₹${totalDiscount}`;
+    deliveryChargeText.textContent = deliveryCharge === 0 ? "Free" : `₹${deliveryCharge}`;
+    summaryTotalPrice.textContent = `₹${finalTotal}`;
+    saveText.textContent = `You will save ₹${totalDiscount} on this order`;
 }
 
 
