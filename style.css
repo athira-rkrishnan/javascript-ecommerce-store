@@ -129,12 +129,27 @@
     align-items: center;
 }
 .header .nav-actions .shoppg-cart {
+    position: relative;
     padding: 0.8rem;
     cursor: pointer;
 }
 .nav-actions .shoppg-cart i {
     font-size: 1.2rem;
     color: #504c4c;
+}
+.nav-actions .cart-count {
+    position: absolute;
+    top: 1px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .header .nav-actions .userPic {
     width: 4rem;

@@ -770,6 +770,33 @@ function updateQuantityButtons() {
     }
 }
 
+let cartProducts = [];
+modalAddCartBtn.addEventListener("click", () => {
+    if(!currentModalProduct) return;
+    const selectedColor = document.querySelector(".modal-active-color")?.dataset.color || "";
+    const selectedSize = document.querySelector(".modal-active-size")?.dataset.size || "";
+
+    const existingProduct = cartProducts.find(product =>
+        product.uniqueId === currentModalProduct.uniqueId &&
+        product.selectedColor === selectedColor &&
+        product.selectedSize === selectedSize
+    );
+
+    if(existingProduct) {
+        existingProduct.quantity += modalQuantity;
+    }
+    else {
+        cartProducts.push({
+            ...currentModalProduct,
+            quantity: modalQuantity,
+            selectedColor,
+            selectedSize
+        });
+    }
+    console.log(cartProducts);
+    updateCartCount();
+});
+
 const closeModal =  document.querySelector(".close-modal");
 closeModal.addEventListener("click", () => {
     productModalOverlay.style.display = "none";
@@ -1019,6 +1046,17 @@ function updateWishlistIcons(productId) {
 const shoppingCart = document.querySelector(".shoppg-cart");
 const cartPage = document.querySelector(".cart-page");
 const closeCart = document.querySelector(".close-cart");
+
+const cartCount = document.querySelector(".cart-count");
+function updateCartCount() {
+    const totalItems = cartProducts.reduce((total, product) => {
+        return total + product.quantity;
+    }, 0);
+    cartCount.textContent = totalItems;
+}
+
+
+
 
 shoppingCart.addEventListener("click", () => {
     cartPage.classList.add("active");
