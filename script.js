@@ -1156,6 +1156,15 @@ function renderCartProducts() {
 
 
 function updateCartSummary() {
+    if(cartProducts.length === 0) {
+        summaryPrice.textContent = "₹0";
+        summaryDiscount.textContent = "₹0";
+        deliveryChargeText.textContent = "₹0";
+        summaryTotalPrice.textContent = "₹0";
+        saveText.textContent = "You will save ₹0 on this order";
+        return;
+    }
+
     let totalOriginalPrice = 0;
     let totalDiscountedPrice = 0;
 
@@ -1187,8 +1196,39 @@ document.addEventListener("click", (event) => {
         );
         renderCartProducts();
         updateCartCount();
+        updateCartSummary();
     }
 });
+
+document.addEventListener("click", (event) => {
+    const plusBtn = event.target.closest(".cart-plus-btn");
+    const minusBtn = event.target.closest(".cart-minus-btn");
+
+    if(plusBtn) {
+        const productId = plusBtn.dataset.id;
+        const selectedProduct = cartProducts.find(product =>
+            product.uniqueId === productId
+        );
+        if(selectedProduct.quantity < selectedProduct.stock) {
+            selectedProduct.quantity++;
+        }
+        renderCartProducts();
+        updateCartCount();
+    }
+
+    if(minusBtn) {
+        const productId = minusBtn.dataset.id;
+        const selectedProduct = cartProducts.find(product =>
+            product.uniqueId === productId
+        );
+        if(selectedProduct.quantity > 1) {
+            selectedProduct.quantity--;
+        }
+        renderCartProducts();
+        updateCartCount();
+    }
+});
+
 
 
 renderCartProducts();
