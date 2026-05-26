@@ -955,7 +955,8 @@ option:hover {
     border: 1px solid #c8c0c0;
 }
 .modal-active-color {
-    border-color: #000;
+    border-color: #262323;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
 }
 .red {
     background: #e74c3c;

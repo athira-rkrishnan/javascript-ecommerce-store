@@ -893,7 +893,14 @@ function renderProductVariations(product) {
 }
 
 
-
+modalColorsList.addEventListener("click", (event) => {
+    const selectedColor = event.target.closest(".modal-color");
+    if(!selectedColor) return;
+    document.querySelectorAll(".modal-color").forEach(color => {
+        color.classList.remove("modal-active-color");
+    });
+    selectedColor.classList.add("modal-active-color");
+});
 
 let wishlistProducts = [];
 const wishlistCount = document.querySelector(".wishlist-count");
