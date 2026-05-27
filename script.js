@@ -797,6 +797,10 @@ function saveCart() {
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
 }
 
+function saveWishlist() {
+    localStorage.setItem("wishlistProducts", JSON.stringify(wishlistProducts));
+}
+
 modalAddCartBtn.addEventListener("click", () => {
     if(!currentModalProduct) return;
     const selectedColor = document.querySelector(".modal-active-color")?.dataset.color || "";
@@ -968,7 +972,7 @@ modalSizesList.addEventListener("click", (event) => {
     selectedSize.classList.add("modal-active-size");
 });
 
-let wishlistProducts = [];
+let wishlistProducts = JSON.parse(localStorage.getItem("wishlistProducts")) || [];
 const wishlistCount = document.querySelector(".wishlist-count");
 
 document.addEventListener("click", (event) => {
@@ -985,6 +989,7 @@ document.addEventListener("click", (event) => {
             wishlistIcon.classList.remove("fa-regular");
             wishlistIcon.classList.add("fa-solid");
             wishlistProducts.push(selectedProduct);
+            saveWishlist();
         }
         else {
             wishlistIcon.classList.remove("fa-solid");
@@ -992,6 +997,7 @@ document.addEventListener("click", (event) => {
             wishlistProducts = wishlistProducts.filter(product =>
                 product.uniqueId !== selectedProduct.uniqueId
             );
+            saveWishlist();
         }
         updateWishlistCount();
     }
@@ -1056,6 +1062,7 @@ document.addEventListener("click", (event) => {
         updateWishlistCount();
         renderWishlistProducts();
         updateWishlistIcons(productId);
+        saveWishlist();
     }
 });
 
@@ -1343,4 +1350,5 @@ function updateResultsText() {
 
 renderCartProducts();
 updateCartCount();
+updateWishlistCount();
 
