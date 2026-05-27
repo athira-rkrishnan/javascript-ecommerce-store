@@ -1,6 +1,9 @@
 let allProductsData = [];
 let currentModalProduct = null;
 let modalQuantity = 1;
+let currentPage = 1;
+const productsPerPage = 12;
+let filteredProductsData = [];
 
 const productImages = {
     beauty: {
@@ -432,8 +435,14 @@ async function fetchProducts() {
 fetchProducts();
 
 function displayProducts(allProducts) { 
+    filteredProductsData = allProducts;
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+
+    const paginatedProducts = allProducts.slice(startIndex, endIndex);
     productsListsContainer.innerHTML = "";
-    allProducts.forEach(product => {   
+
+    paginatedProducts.forEach(product => {   
         const productThumbnail = product.thumbnail || product.image; 
         const productRatings = (product.rating?.rate || product.rating).toFixed(1); 
               
