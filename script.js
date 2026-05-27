@@ -468,6 +468,7 @@ function displayProducts(allProducts) {
         `;
     });
     updatePaginationButtons();
+    updateResultsText();
 }
 
 
@@ -480,6 +481,7 @@ function searchProducts() {
     console.log(filteredProducts);
     
     if(filteredProducts.length === 0) {
+        filteredProductsData = [];
         productsListsContainer.innerHTML = `
             <div class="error-message">
             <span>
@@ -490,10 +492,12 @@ function searchProducts() {
         `;
         productsListsContainer.style.display = "flex";
         productsListsContainer.style.justifyContent = "center";
+        updatePaginationButtons();
+        updateResultsText();
         return;
     }
-    displayProducts(filteredProducts);
-    
+    currentPage = 1;
+    displayProducts(filteredProducts); 
 }
 
 searchInput.addEventListener("keydown", (event) => {
@@ -547,6 +551,7 @@ function categoryFilterProducts() {
         return selectedCategories.includes(product.category.toLowerCase());
     });
     console.log(categoryFilteredProducts);
+    currentPage = 1;
     displayProducts(categoryFilteredProducts);
 }
 
@@ -564,6 +569,7 @@ function priceFilterProducts() {
         return product.discountedPrice >= minPrice && product.discountedPrice <= maxPrice;
     });
     console.log(priceFilteredProducts);
+    currentPage = 1;
     displayProducts(priceFilteredProducts);
 }
 
@@ -641,6 +647,7 @@ function sortProducts() {
             return b.id - a.id;
         });
     }
+    currentPage = 1;
     displayProducts(sortedProducts);
 }
 
@@ -1274,8 +1281,8 @@ function updatePaginationButtons() {
             </button>
         `;
     }
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= totalPages || totalPages === 0;
 }
 
 
@@ -1314,7 +1321,16 @@ nextBtn.addEventListener("click", () => {
     }
 });
 
-
+const showResults = document.querySelector(".showResults");
+function updateResultsText() {
+    const start = (currentPage - 1) * productsPerPage + 1;
+    const end = Math.min(
+        currentPage * productsPerPage,
+        filteredProductsData.length
+    );
+    showResults.textContent =
+        `Showing ${start} - ${end} of ${filteredProductsData.length} results`;
+}
 
 renderCartProducts();
 
