@@ -791,7 +791,12 @@ function updateQuantityButtons() {
     }
 }
 
-let cartProducts = [];
+let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+function saveCart() {
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+}
+
 modalAddCartBtn.addEventListener("click", () => {
     if(!currentModalProduct) return;
     const selectedColor = document.querySelector(".modal-active-color")?.dataset.color || "";
@@ -818,6 +823,7 @@ modalAddCartBtn.addEventListener("click", () => {
     console.log(cartProducts);
     updateCartCount();
     renderCartProducts();
+    saveCart();
 });
 
 const closeModal =  document.querySelector(".close-modal");
@@ -1219,6 +1225,7 @@ document.addEventListener("click", (event) => {
         renderCartProducts();
         updateCartCount();
         updateCartSummary();
+        saveCart();
     }
 });
 
@@ -1236,6 +1243,7 @@ document.addEventListener("click", (event) => {
         }
         renderCartProducts();
         updateCartCount();
+        saveCart();
     }
 
     if(minusBtn) {
@@ -1248,6 +1256,7 @@ document.addEventListener("click", (event) => {
         }
         renderCartProducts();
         updateCartCount();
+        saveCart();
     }
 });
 
@@ -1333,4 +1342,5 @@ function updateResultsText() {
 }
 
 renderCartProducts();
+updateCartCount();
 
