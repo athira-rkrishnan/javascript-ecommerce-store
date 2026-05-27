@@ -420,7 +420,8 @@ async function fetchProducts() {
         productsListsContainer.innerHTML = `
             <div class="error-message">
                 <i class="fa-solid fa-circle-exclamation"></i>
-                Failed to load products
+                <p>Failed to load products</p>
+                <button class="retry-btn" onclick="fetchProducts()">Retry</button>
             </div>
         `;
         productsListsContainer.style.display = "flex";
@@ -471,8 +472,10 @@ function searchProducts() {
     if(filteredProducts.length === 0) {
         productsListsContainer.innerHTML = `
             <div class="error-message">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                No products found
+            <span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                No matching products found.
+            </span>
             </div>
         `;
         productsListsContainer.style.display = "flex";
@@ -718,6 +721,7 @@ function openProductModal(product) {
         modalAddCartBtn.disabled = true;
         modalAddCartBtn.style.opacity = "0.6";
         modalAddCartBtn.style.cursor = "not-allowed";
+        showErrorMsg("This product is out of stock");
     }
     else if(product.stock <= 5) {
         modalStockValue.textContent = `Only ${product.stock} items left!`;
@@ -792,6 +796,7 @@ modalAddCartBtn.addEventListener("click", () => {
             selectedColor,
             selectedSize
         });
+    showErrorMsg("Product added to cart");
     }
     console.log(cartProducts);
     updateCartCount();
@@ -1228,6 +1233,20 @@ document.addEventListener("click", (event) => {
         updateCartCount();
     }
 });
+
+
+const notificationMessage = document.querySelector(".notification-message");
+function showErrorMsg(message) {
+    notificationMessage.innerHTML = `
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>${message}</span>
+    `;
+    notificationMessage.classList.add("show");
+    clearTimeout(notificationMessage.timeoutId);
+    notificationMessage.timeoutId = setTimeout(() => {
+        notificationMessage.classList.remove("show");
+    }, 3000);
+}
 
 
 

@@ -55,6 +55,7 @@
     font-size: 1.87rem;
     font-weight: 600;
     color: #4B0082;
+    margin-right: 0.31rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -566,7 +567,7 @@ option:hover {
     background: #36005c;
 }
 .products-lists-container .error-message {
-    width: 30%;
+    width: 38%;
     padding: 1rem;
     background: #ffe5e5;
     color: #d93025;
@@ -580,6 +581,24 @@ option:hover {
     margin-top: 1rem;
     margin: auto;
 }
+
+.products-lists-container .error-message .retry-btn {
+    padding: 0.4rem 0.7rem;
+    background: #595454;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+
+
+
+
 .products-container .productListing-container .pagination {
     margin-top: 2rem;
     display: flex;
@@ -1405,7 +1424,7 @@ option:hover {
     background: #36005f;
 }
 
-.error-message {
+.notification-message {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -1414,8 +1433,8 @@ option:hover {
     color: #fff;
     padding: 14px 22px;
     border-radius: 6px;
-    opacity: 1;
-    visibility: visible;
+    opacity: 0;
+    visibility: hidden;
     transition: 0.3s;
     display: flex;
     align-items: center;
@@ -1423,7 +1442,7 @@ option:hover {
     z-index: 9999;
     animation: slideIn 0.4s ease;
 } 
-.error-message i {
+.notification-message i {
     font-size: 20px;
     background: rgba(255,255,255,0.2);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -1433,6 +1452,10 @@ option:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.notification-message.show {
+    opacity: 1;
+    visibility: visible;
 }
 @keyframes slideIn {
     from {
@@ -1467,6 +1490,12 @@ option:hover {
     }
     .header .nav-section ul {
         gap: 0.5rem;
+    }
+    .header .nav-section ul li {
+        padding: 1rem 0.5rem;
+    }
+    .header .nav-actions {
+        flex-basis: 40%;
     }
     .products-lists-container .error-message {
         width: 45%;  
@@ -1609,6 +1638,9 @@ option:hover {
     .modal-main-image {
         height: 300px;
     }
+    .products-lists-container .error-message {
+        width: 58%;
+    }
 }
 
 @media screen and (max-width: 768px) { 
@@ -1711,7 +1743,8 @@ option:hover {
         font-size: 0.9rem;
     }
     .products-lists-container .error-message {
-        width: 80%;
+        width: 92%;
+        flex-wrap: wrap;
     }
     .outer-container .footer {
         justify-content: space-between;
