@@ -1290,6 +1290,31 @@ pageNumbersContainer.addEventListener("click", (event) => {
     });
 });
 
+prevBtn.addEventListener("click", () => {
+    if(currentPage > 1) {
+        currentPage--;
+        displayProducts(filteredProductsData);
+        window.scrollTo({
+            top: productsListsContainer.offsetTop - 100,
+            behavior: "smooth"
+        });
+    }
+});
+
+
+nextBtn.addEventListener("click", () => {
+    const totalPages = Math.ceil(filteredProductsData.length / productsPerPage);
+    if(currentPage < totalPages) {
+        currentPage++;
+        displayProducts(filteredProductsData);
+        window.scrollTo({
+            top: productsListsContainer.offsetTop - 100,
+            behavior: "smooth"
+        });
+    }
+});
+
+
 
 renderCartProducts();
 

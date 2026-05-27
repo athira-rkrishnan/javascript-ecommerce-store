@@ -594,11 +594,6 @@ option:hover {
     transition: all 0.3s ease;
 }
 
-
-
-
-
-
 .products-container .productListing-container .pagination {
     margin-top: 2rem;
     display: flex;
@@ -628,6 +623,13 @@ option:hover {
     background: #4B0082;
     color: #ffffff;
 }
+#prev-btn:disabled,
+#next-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #999;
+}
+
 .outer-container .footer {
     display: flex;
     flex-wrap: wrap;
