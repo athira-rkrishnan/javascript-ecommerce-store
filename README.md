@@ -65,14 +65,67 @@ NovaCart is a fully responsive, dynamic e-commerce website built using HTML, CSS
 - Font Awesome for icons
 - Local storage 
 
-## Demo
+## Demo GIF
+![NovaCart Demo](assets/images/screenshots/Novacart-Demo.gif)
 
-## Screenshots
+## Preview
+<table align="center">
+<tr>
+<td align="center">
+<h4>Homepage</h4>
+<a href="assets/images/screenshots/Homepage.png">
+    <img src="assets/images/screenshots/Homepage.png" width="450" height="350">
+</a>
+</td>
+<td align="center">
+<h4>Product Modal</h4>
+<a href="assets/images/screenshots/ProductModal.png">
+    <img src="assets/images/screenshots/ProductModal.png" width="450" height="auto">
+</a>
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<h4>Cart Page</h4>
+<a href="assets/images/screenshots/ShoppingCartPage.png">
+    <img src="assets/images/screenshots/ShoppingCartPage.png" width="450" height="auto">
+</a>
+</td>
+<td align="center">
+<h4>Wishlist Page</h4>
+<a href="assets/images/screenshots/WishlistPage.png">
+    <img src="assets/images/screenshots/WishlistPage.png" width="450">
+</a>
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<h4>Network Error Message</h4>
+<a href="assets/images/screenshots/NetworkErrorMsg.png">
+    <img src="assets/images/screenshots/NetworkErrorMsg.png" width="450" height="auto">
+</a>
+</td>
+<td align="center">
+<h4>Notification Message</h4>
+<a href="frontend/assets/Weather-fetch-error.png">
+    <img src="frontend/assets/Weather-fetch-error.png" width="450">
+</a>
+</td>
+</tr>
+</table>
 
 ## Deployment
-- GitHub Pages
-- Netlify
-- Vercel
+* **GitHub Pages:**  [View Demo]()
+* **Netlify:**  [View Demo]()
+* **Vercel:**  [View Demo]()
+
+## Responsive Design Screenshots
+* **Responsive at 480px:**   [View](assets/images/screenshots/Responsive-480px.png)
+* **Responsive at 768px:**   [View](assets/images/screenshots/Responsive-768px.png)
+* **Responsive at 1024px:**   [View](assets/images/screenshots/Responsive-1024px.png)
+
 
 ## How It Works
 - Fetches product data from multiple APIs and local JSON files.
@@ -84,8 +137,26 @@ NovaCart is a fully responsive, dynamic e-commerce website built using HTML, CSS
 
 ## Setup & Usage
 1. Clone or download the repository.
-2. Open `index.html` in your browser.
-3. Explore the various features by browsing, filtering, searching, and managing cart & wishlist.
+```
+ https://github.com/athira-rkrishnan/javascript-ecommerce-store.git
+```
+2. Navigate to the project folder:
+```
+cd javascript-ecommerce-store
+```
+3. Run the project using a local development server:
+Using VS Code Live Server:
+```bash
+Right Click → Open with Live Server
+```
+Or using npm:
+```bash
+npx serve .
+```
+4. Open the local URL shown in the browser (for example: `http://localhost:5500`).
+> **Note:** Opening `index.html` directly in the browser may prevent products from loading because browsers block local API/JSON requests due to CORS security restrictions.
+
+5. Explore the various features by browsing, filtering, searching, and managing cart & wishlist.
 
 ## Customization
 - Update product data or add new categories in `shoes.json` or the `productImages` object.
