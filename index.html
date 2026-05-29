@@ -16,7 +16,7 @@
             </div>
             <div class = "shippg-text">
                 <p><i class="fa-solid fa-truck-fast"></i> Free shipping on all orders over $30</p>
-                <p><i class="fa-solid fa-location-dot"></i> Track your order</p>
+                <p class = "trackOrder"><i class="fa-solid fa-location-dot"></i> Track your order</p>
             </div>
         </div>
         <header class = "header">
@@ -59,6 +59,9 @@
                 <p>Shop Electronics, Fashion, Beauty, Furniture & More</p>
                 <button>Shop Now</button>
             </div>
+            <div class = "heroProductsImg">
+                <img src = "assets/images/productsheroImg.webp">
+            </div>
         </div>
         <div class = "products-container">
             <div class="filter-toggle">
@@ -96,7 +99,7 @@
                                 </li>
                                 <li>
                                     <input type="checkbox" class="category-filter" value = "women's clothing">
-                                    </label>Women's Clothing</label>
+                                    <label>Women's Clothing</label>
                                 </li>
                                 <li>
                                     <input type="checkbox" class="category-filter" value = "shoes">
@@ -171,11 +174,7 @@
                 <div class = "products-lists-container"></div>
                 <div class="pagination">
                     <button id="prev-btn">Previous</button>
-                    <div class="page-numbers">
-                        <button class="page-btn active">1</button>
-                        <button class="page-btn">2</button>
-                        <button class="page-btn">3</button>
-                    </div>
+                    <div class="page-numbers"></div>
                     <button id="next-btn">Next</button>
                 </div>
             </div>
@@ -224,19 +223,15 @@
         <div class="wishlist-top">
             <div class="wishlist-header">
                 <h2>My Wishlist</h2>
-                <span class="wishlist-total-items">
-                    0 Items
-                </span>
+                <span class="wishlist-total-items">0 Items</span>
             </div>
             <button class="close-wishlist">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-        <div class="wishlist-products-container">
-        </div>
+        <div class="wishlist-products-container"></div>
     </div>
 
-        <!-- Product Details Modal -->
     <div class="product-modal-overlay">
         <div class="product-modal">
             <button class="close-modal">
@@ -246,20 +241,7 @@
                 <div class="modal-main-product-image">
                     <img src="assets/images/ProTest1.webp" alt="Nike Shoe" class="modal-main-image">
                 </div>
-                <div class="modal-product-thumbnails">
-                    <div class="modal-thumbnail modal-active-thumbnail">
-                        <img src="assets/images/ProTest2.webp">
-                    </div>
-                    <div class="modal-thumbnail">
-                        <img src="assets/images/ProTest3.webp">
-                    </div>
-                    <div class="modal-thumbnail">
-                        <img src="assets/images/ProTest4.webp">
-                    </div>
-                    <div class="modal-thumbnail">
-                        <img src="assets/images/ProTest5.webp">
-                    </div>
-                </div>
+                <div class="modal-product-thumbnails"></div>
             </div>
             <div class="modal-right">
                 <h2 class="modal-product-title">Nike Air Zoom Pegasus</h2>
@@ -311,7 +293,6 @@
         </div>
     </div>
 
-        <!-- Cart Page -->
     <div class="cart-page">
         <div class="cart-header">
             <h2>Shopping Cart</h2>

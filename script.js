@@ -5,6 +5,7 @@ let currentPage = 1;
 const productsPerPage = 12;
 let filteredProductsData = [];
 
+// Object containing image URLs categorized by product category and ID
 const productImages = {
     beauty: {
         1: [
@@ -301,8 +302,6 @@ const productImages = {
     }
 };
 
-
-
 const toggleMenu = document.querySelector(".toggle-menu");
 const navigationMenu = document.querySelector(".navigation-menu");
 const filterToggle = document.querySelector(".filter-toggle");
@@ -321,8 +320,6 @@ const maxRange = document.querySelector(".max-range");
 const minPriceText = document.getElementById("min-price");
 const maxPriceText = document.getElementById("max-price");
 const resetPrice = document.querySelector(".resetPrice");
-
-
 
 toggleMenu.addEventListener("click", () => {
     navigationMenu.classList.toggle("active");
@@ -346,7 +343,7 @@ beautyToggleBtn.addEventListener("click", () => {
     beautyToggleBtn.classList.toggle("rotate");
 });
  
-
+// Function to show loading skeletons during fetch
 function showLoadingSkeleton() {
     productsListsContainer.innerHTML = "";
     let skeletonCount;
@@ -373,6 +370,7 @@ function showLoadingSkeleton() {
     }
 }
 
+// Function to fetch products from APIs
 async function fetchProducts() {
     showLoadingSkeleton();
     try {
@@ -381,28 +379,20 @@ async function fetchProducts() {
             fetch("https://fakestoreapi.com/products/"),
             fetch("./shoes.json")
         ]);
-        console.log(dummyJsonApiResponse);
-        console.log(fakeStoreApiResponse);
-        console.log(shoesResponse);
 
         const dummyJsonData = await dummyJsonApiResponse.json();
         const fakeStoreData = await fakeStoreApiResponse.json();
         const shoesData = await shoesResponse.json();
-        console.log(dummyJsonData);
-        console.log(fakeStoreData);
-        console.log(shoesData);
-
+    
         const allProducts = [...dummyJsonData.products, ...fakeStoreData, ...shoesData].map(product => {
             const exchangeRate = 95;
             const originalPrice = Math.floor(product.price * exchangeRate);
             const discountPercentage = Math.ceil(product.discountPercentage || (Math.random() * 20) + 5);
             const discountedPrice = Math.floor(originalPrice - (originalPrice * discountPercentage / 100));
             const stockValue = product.stock || Math.floor(Math.random() * 20) + 1;
-
             const productThumbnail = product.images?.[0] || product.image;
             const categoryImages = productImages[product.category]?.[product.id];
             const finalImages = categoryImages ? [productThumbnail, ...categoryImages] : [productThumbnail];
-
             return {
                 ...product,
                 uniqueId: `${product.category}-${product.id}`,
@@ -414,7 +404,6 @@ async function fetchProducts() {
                 variations: generateProductVariations(product.category)
             };
         });
-        console.log(allProducts);
         allProductsData = allProducts;
         displayProducts(allProducts);
     }
@@ -434,6 +423,7 @@ async function fetchProducts() {
 
 fetchProducts();
 
+// Function to display products on the page
 function displayProducts(allProducts) { 
     filteredProductsData = allProducts;
     const startIndex = (currentPage - 1) * productsPerPage;
@@ -469,25 +459,24 @@ function displayProducts(allProducts) {
     });
     updatePaginationButtons();
     updateResultsText();
+    restoreWishlistIcons();
 }
 
-
+// Function to handle searching products
 function searchProducts() {
-    console.log("Searching...");
     const searchValue = searchInput.value.toLowerCase();
     const filteredProducts = allProductsData.filter(product => 
         product.title.toLowerCase().includes(searchValue) || product.category.toLowerCase().includes(searchValue)
     );
-    console.log(filteredProducts);
     
     if(filteredProducts.length === 0) {
         filteredProductsData = [];
         productsListsContainer.innerHTML = `
             <div class="error-message">
-            <span>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                No matching products found.
-            </span>
+                <span>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    No matching products found.
+                </span>
             </div>
         `;
         productsListsContainer.style.display = "flex";
@@ -507,7 +496,7 @@ searchInput.addEventListener("keydown", (event) => {
 });
 searchIcon.addEventListener("click", searchProducts);
 
-
+// Debounce search input to reduce frequent calls
 let debounceTimer;
 searchInput.addEventListener("input", () => {
     clearTimeout(debounceTimer);
@@ -516,11 +505,11 @@ searchInput.addEventListener("input", () => {
     }, 500);
 });
 
-
 categoryFilters.forEach(category => {
     category.addEventListener("change", categoryFilterProducts);
 });
 
+// Function to filter products based on category
 function categoryFilterProducts() {
     let selectedCategories = [];
     categoryFilters.forEach(category => {
@@ -537,11 +526,7 @@ function categoryFilterProducts() {
             }
         }
     });
-    console.log(selectedCategories);
-
     selectedCategories = [...new Set(selectedCategories)];
-
-    console.log(selectedCategories);
 
     if(selectedCategories.length === 0) {
         displayProducts(allProductsData);
@@ -550,15 +535,14 @@ function categoryFilterProducts() {
     const categoryFilteredProducts  = allProductsData.filter(product => {
         return selectedCategories.includes(product.category.toLowerCase());
     });
-    console.log(categoryFilteredProducts);
     currentPage = 1;
     displayProducts(categoryFilteredProducts);
 }
 
-
 minRange.addEventListener("input", priceFilterProducts);
 maxRange.addEventListener("input", priceFilterProducts);
 
+// Function to filter products based on price range
 function priceFilterProducts() {
     const minPrice = Number(minRange.value);
     const maxPrice = Number(maxRange.value);
@@ -568,11 +552,11 @@ function priceFilterProducts() {
     const priceFilteredProducts = allProductsData.filter(product => {
         return product.discountedPrice >= minPrice && product.discountedPrice <= maxPrice;
     });
-    console.log(priceFilteredProducts);
     currentPage = 1;
     displayProducts(priceFilteredProducts);
 }
 
+// Keep ranges in sync and update slider track
 minRange.addEventListener("input", () => {
     if(Number(minRange.value) > Number(maxRange.value)) {
         minRange.value = maxRange.value;
@@ -589,6 +573,7 @@ maxRange.addEventListener("input", () => {
     updateSliderTrack();
 });
 
+// Reset price filters to default
 resetPrice.addEventListener("click", () => {
     minRange.value = 0;
     maxRange.value = 202000;
@@ -598,6 +583,7 @@ resetPrice.addEventListener("click", () => {
     updateSliderTrack();
 });
 
+// Function to update slider background based on range values
 function updateSliderTrack() {
     const min = minRange.min;
     const max = minRange.max;
@@ -615,10 +601,10 @@ function updateSliderTrack() {
 const sortSelect = document.getElementById("sort-select");
 sortSelect.addEventListener("change", sortProducts);
 
+// Function to sort products based on selected criteria
 function sortProducts() {
     const sortSelectValue = sortSelect.value;
     let sortedProducts = [...allProductsData];
-    console.log(sortedProducts);
 
     if(sortSelectValue === "high-low") {
         sortedProducts.sort((a, b) => {
@@ -651,26 +637,18 @@ function sortProducts() {
     displayProducts(sortedProducts);
 }
 
-
 const productModalOverlay = document.querySelector(".product-modal-overlay");
 document.addEventListener("click", (event) => {
-
     const viewDetailsBtn = event.target.closest(".view-details");
-    console.log(viewDetailsBtn);
     if(viewDetailsBtn) {
         const productItem = viewDetailsBtn.closest(".product-item");
-        console.log(productItem);
         const productId = productItem.dataset.id;
-        console.log(productId);
         const selectedProduct = allProductsData.find(product => 
             product.uniqueId === productId
         );
-        console.log(selectedProduct);
         openProductModal(selectedProduct);
     }
-
 });
-
 
 const modalMainImage = document.querySelector(".modal-main-image");
 const modalThumbnailsContainer = document.querySelector(".modal-product-thumbnails");
@@ -686,18 +664,17 @@ const modalPlusBtn = document.querySelector(".modal-plus-btn");
 const modalQuantityValue = document.querySelector(".modal-quantity-value");
 const modalStockValue = document.querySelector(".modal-stockValue");
 const modalAddCartBtn = document.querySelector(".modal-add-cart-btn");
-
 const modalProductColors = document.querySelector(".modal-product-colors");
 const modalColorsList = document.querySelector(".modal-colors-list");
 const modalProductSizes = document.querySelector(".modal-product-sizes");
 const modalSizesList = document.querySelector(".modal-sizes-list");
 
+// Function to open product modal with details
 function openProductModal(product) {
     modalQuantity = 1;
     currentModalProduct = product;
     productModalOverlay.style.display = "flex";
     const productRating = (product.rating?.rate || product.rating);
-
     modalMainImage.src = product.images?.[0];
     modalThumbnailsContainer.innerHTML = "";
     modalProductTitle.textContent = product.title;
@@ -707,7 +684,6 @@ function openProductModal(product) {
     modalDiscountPercent.textContent = `${product.discountPercentage}% OFF`;
     modalDescription.textContent = product.description;
     modalQuantityValue.textContent = modalQuantity;
-
     generateRatingStars(productRating);
 
     product.images.forEach((image, index) => {
@@ -718,7 +694,7 @@ function openProductModal(product) {
         `;
     });
 
- 
+    // Add event listener for thumbnail click
     const modalThumbnails = document.querySelectorAll(".modal-thumbnail");
     modalThumbnailsContainer.addEventListener("click", (event) => {
         const thumbnail = event.target.closest(".modal-thumbnail");
@@ -731,7 +707,7 @@ function openProductModal(product) {
         thumbnail.classList.add("modal-active-thumbnail");
     });
 
-
+     // Handle stock status
     if(product.stock === 0) {
         modalStockValue.textContent = "Out of Stock";
         modalStockValue.style.color = "#ff0000";
@@ -754,11 +730,11 @@ function openProductModal(product) {
         modalAddCartBtn.style.opacity = "1";
         modalAddCartBtn.style.cursor = "pointer";
     }   
-
     updateQuantityButtons();
     renderProductVariations(product);
 }
 
+// Event handlers for quantity buttons in modal
 modalPlusBtn.addEventListener("click", () => {
     if(modalQuantity < currentModalProduct.stock) {
         modalQuantity++;
@@ -775,6 +751,7 @@ modalMinusBtn.addEventListener("click", () => {
     }
 });
 
+// Enable/disable quantity buttons based on current quantity
 function updateQuantityButtons() {
     if(modalQuantity >= currentModalProduct.stock) {
         modalPlusBtn.disabled = true;
@@ -791,16 +768,20 @@ function updateQuantityButtons() {
     }
 }
 
+// Load cart from localStorage
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
+// Save cart data to localStorage
 function saveCart() {
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
 }
 
+// Save wishlist to localStorage
 function saveWishlist() {
     localStorage.setItem("wishlistProducts", JSON.stringify(wishlistProducts));
 }
 
+// Add product to cart
 modalAddCartBtn.addEventListener("click", () => {
     if(!currentModalProduct) return;
     const selectedColor = document.querySelector(".modal-active-color")?.dataset.color || "";
@@ -824,7 +805,6 @@ modalAddCartBtn.addEventListener("click", () => {
         });
     showErrorMsg("Product added to cart");
     }
-    console.log(cartProducts);
     updateCartCount();
     renderCartProducts();
     saveCart();
@@ -841,10 +821,9 @@ productModalOverlay.addEventListener("click", (event) => {
     }
 });
 
-
+// Function to generate star ratings display
 function generateRatingStars(rating) {
     modalRatingStars.innerHTML = "";
-
     const roundedRating = Math.round(rating * 10) / 10;
     const fullStars = Math.floor(roundedRating);
     const decimalPart = roundedRating - fullStars;
@@ -868,7 +847,7 @@ function generateRatingStars(rating) {
     }
 }
 
-
+// Generate product variations based on category
 function generateProductVariations(category) {
     switch(category.toLowerCase()) {
         case "shoes":
@@ -920,6 +899,7 @@ function generateProductVariations(category) {
     }
 }
 
+// Render product variations (colors and sizes) in modal
 function renderProductVariations(product) {
     const {colors, sizes} = product.variations;
     modalColorsList.innerHTML = "";
@@ -952,7 +932,6 @@ function renderProductVariations(product) {
     }
 }
 
-
 modalColorsList.addEventListener("click", (event) => {
     const selectedColor = event.target.closest(".modal-color");
     if(!selectedColor) return;
@@ -961,7 +940,6 @@ modalColorsList.addEventListener("click", (event) => {
     });
     selectedColor.classList.add("modal-active-color");
 });
-
 
 modalSizesList.addEventListener("click", (event) => {
     const selectedSize = event.target.closest(".modal-size-btn");
@@ -972,16 +950,18 @@ modalSizesList.addEventListener("click", (event) => {
     selectedSize.classList.add("modal-active-size");
 });
 
+// Load wishlist from localStorage
 let wishlistProducts = JSON.parse(localStorage.getItem("wishlistProducts")) || [];
 const wishlistCount = document.querySelector(".wishlist-count");
 
+// Toggle wishlist icon and update wishlist data
 document.addEventListener("click", (event) => {
     const wishlistBtn = event.target.closest(".wishlist-icon"); 
     if(wishlistBtn) {
         const productItem = wishlistBtn.closest(".product-item");
         const productId = productItem.dataset.id;
         const selectedProduct = allProductsData.find(product =>
-                product.uniqueId === productId
+            product.uniqueId === productId
         );
         wishlistBtn.classList.toggle("active");
         const wishlistIcon = wishlistBtn.querySelector("i");
@@ -1022,6 +1002,7 @@ closeWishlist.addEventListener("click", () => {
     wishlistPage.classList.remove("active");
 });
 
+// Render wishlist products
 function renderWishlistProducts() {
     wishlistProductsContainer.innerHTML = "";
     wishlistTotalItems.textContent = `${wishlistProducts.length} Items`;
@@ -1052,13 +1033,14 @@ function renderWishlistProducts() {
     });
 }
 
+// Remove product from wishlist
 document.addEventListener("click", (event) => {
     const removeBtn = event.target.closest(".remove-wishlist-btn");
     if(removeBtn) {
         const productId = removeBtn.dataset.id;
         wishlistProducts = wishlistProducts.filter(product =>
-                product.uniqueId !== productId
-            );
+            product.uniqueId !== productId
+        );
         updateWishlistCount();
         renderWishlistProducts();
         updateWishlistIcons(productId);
@@ -1066,7 +1048,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-
+// Update wishlist icon when product is removed
 function updateWishlistIcons(productId) {
     const productCard = document.querySelector(`.product-item[data-id="${productId}"]`);
     if(productCard) {
@@ -1078,12 +1060,28 @@ function updateWishlistIcons(productId) {
     }
 }
 
+// Restore wishlist icons on page load
+function restoreWishlistIcons() {
+    wishlistProducts.forEach(product => {
+        const productCard = document.querySelector(
+            `.product-item[data-id="${product.uniqueId}"]`
+        );
+        if(productCard) {
+            const wishlistBtn = productCard.querySelector(".wishlist-icon");
+            wishlistBtn.classList.add("active");
+            const icon = wishlistBtn.querySelector("i");
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+        }
+    });
+}
 
 const shoppingCart = document.querySelector(".shoppg-cart");
 const cartPage = document.querySelector(".cart-page");
 const closeCart = document.querySelector(".close-cart");
-
 const cartCount = document.querySelector(".cart-count");
+
+// Update cart item count badge
 function updateCartCount() {
     const totalItems = cartProducts.reduce((total, product) => {
         return total + product.quantity;
@@ -1107,6 +1105,7 @@ const deliveryChargeText = document.querySelector(".delivery-charge-text");
 const summaryTotalPrice = document.querySelector(".summary-total-price");
 const saveText = document.querySelector(".save-text");
 
+// Render cart products
 function renderCartProducts() {
     cartProductsContainer.innerHTML = "";
     if(cartProducts.length === 0) {
@@ -1131,65 +1130,37 @@ function renderCartProducts() {
                 <div class="cart-product-details">
                     <div class="cart-product-top">
                         <div>
-                            <h3 class="cart-product-title">
-                                ${product.title}
-                            </h3>
-                            <p class="cart-product-category">
-                                ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
-                            </p>
-                            ${
-                                product.selectedColor ?
-                                `<p>Color: ${product.selectedColor.charAt(0).toUpperCase() + product.selectedColor.slice(1)}</p>` : ""
-                            }
-                            ${
-                                product.selectedSize ?
-                                `<p>Size: ${product.selectedSize}</p>` : ""
-                            }
+                            <h3 class="cart-product-title">${product.title}</h3>
+                            <p class="cart-product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                            ${product.selectedColor ? `<p>Color: ${product.selectedColor.charAt(0).toUpperCase() + product.selectedColor.slice(1)}</p>` : ""}
+                            ${product.selectedSize ? `<p>Size: ${product.selectedSize}</p>` : ""}
                         </div>
-                        <button class="remove-cart-btn"
-                            data-id="${product.uniqueId}">
+                        <button class="remove-cart-btn" data-id="${product.uniqueId}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>
                     <div class="cart-product-price-section">
-                        <span class="cart-discounted-price">
-                            ₹${product.discountedPrice}
-                        </span>
-                        <span class="cart-original-price">
-                            ₹${product.originalPrice}
-                        </span>
-                        <span class="cart-discount-percent">
-                            ${product.discountPercentage}% OFF
-                        </span>
+                        <span class="cart-discounted-price">₹${product.discountedPrice}</span>
+                        <span class="cart-original-price">₹${product.originalPrice}</span>
+                        <span class="cart-discount-percent">${product.discountPercentage}% OFF</span>
                     </div>
                     <div class="cart-bottom-section">
                         <div class="cart-quantity-box">
-                            <button class="cart-minus-btn"
-                                data-id="${product.uniqueId}">
-                                -
-                            </button>
-                            <span class="cart-quantity">
-                                ${product.quantity}
-                            </span>
-                            <button class="cart-plus-btn"
-                                data-id="${product.uniqueId}">
-                                +
-                            </button>
+                            <button class="cart-minus-btn" data-id="${product.uniqueId}"> - </button>
+                            <span class="cart-quantity">${product.quantity}</span>
+                            <button class="cart-plus-btn" data-id="${product.uniqueId}"> + </button>
                         </div>
-                        <div class="cart-product-total">
-                            ₹${totalPrice}
-                        </div>
+                        <div class="cart-product-total">₹${totalPrice}</div>
                     </div>
                 </div>
             </div>
         `;
     });
-
     cartTotalItems.textContent = `${totalItems} Items`;
     updateCartSummary();
 }
 
-
+// Function to update cart summary (price, discount, total)
 function updateCartSummary() {
     if(cartProducts.length === 0) {
         summaryPrice.textContent = "₹0";
@@ -1221,7 +1192,7 @@ function updateCartSummary() {
     saveText.textContent = `You will save ₹${totalDiscount} on this order`;
 }
 
-
+// Remove product from cart
 document.addEventListener("click", (event) => {
     const removeBtn = event.target.closest(".remove-cart-btn");
     if(removeBtn) {
@@ -1236,6 +1207,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
+// Handle quantity increase/decrease in cart
 document.addEventListener("click", (event) => {
     const plusBtn = event.target.closest(".cart-plus-btn");
     const minusBtn = event.target.closest(".cart-minus-btn");
@@ -1267,7 +1239,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-
+// Function to show temporary notification messages
 const notificationMessage = document.querySelector(".notification-message");
 function showErrorMsg(message) {
     notificationMessage.innerHTML = `
@@ -1281,18 +1253,17 @@ function showErrorMsg(message) {
     }, 3000);
 }
 
-
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const pageNumbersContainer = document.querySelector(".page-numbers");
 
+// Update pagination buttons based on total pages
 function updatePaginationButtons() {
     const totalPages = Math.ceil(filteredProductsData.length / productsPerPage);
     pageNumbersContainer.innerHTML = "";
     for(let i = 1; i <= totalPages; i++) {
         pageNumbersContainer.innerHTML += `
-            <button class="page-btn ${i === currentPage ? "active" : ""}" 
-                data-page="${i}">
+            <button class="page-btn ${i === currentPage ? "active" : ""}" data-page="${i}">
                 ${i}
             </button>
         `;
@@ -1301,7 +1272,7 @@ function updatePaginationButtons() {
     nextBtn.disabled = currentPage >= totalPages || totalPages === 0;
 }
 
-
+// Handle page number button clicks
 pageNumbersContainer.addEventListener("click", (event) => {
     const pageBtn = event.target.closest(".page-btn");
     if(!pageBtn) return;
@@ -1324,7 +1295,6 @@ prevBtn.addEventListener("click", () => {
     }
 });
 
-
 nextBtn.addEventListener("click", () => {
     const totalPages = Math.ceil(filteredProductsData.length / productsPerPage);
     if(currentPage < totalPages) {
@@ -1337,17 +1307,15 @@ nextBtn.addEventListener("click", () => {
     }
 });
 
+// Update the showing results text
 const showResults = document.querySelector(".showResults");
 function updateResultsText() {
     const start = (currentPage - 1) * productsPerPage + 1;
-    const end = Math.min(
-        currentPage * productsPerPage,
-        filteredProductsData.length
-    );
-    showResults.textContent =
-        `Showing ${start} - ${end} of ${filteredProductsData.length} results`;
+    const end = Math.min(currentPage * productsPerPage, filteredProductsData.length);
+    showResults.textContent = `Showing ${start} - ${end} of ${filteredProductsData.length} results`;
 }
 
+// Initial render of cart and wishlist counts
 renderCartProducts();
 updateCartCount();
 updateWishlistCount();

@@ -34,6 +34,9 @@
     flex-basis: 58%;
     gap: 5rem;
 }
+.header-top .shippg-text .trackOrder {
+    cursor: pointer;
+}
 .outer-container .header {
     background: #ffffff;
     padding: 0.4rem 0.6rem;
@@ -158,6 +161,7 @@
     border-radius: 50%;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .nav-actions .userPic img {
     width: 2.5rem;
@@ -169,19 +173,20 @@
 }
 .outer-container .hero-bgimage {
     height: 25rem;
-    background-image: linear-gradient(to right, #5f089f, #9f0fe5);
+    background-image: url(assets/images/backgroundImg.webp);
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
     user-select: none;
- /*   background-image: url("assets/4.jpg");
+    padding-right: 3rem;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;  */
+    background-size: cover; 
 }
 .hero-bgimage .descrptn-text {
     color: #ffffff;
     padding-left: 3.5rem;
+    flex-basis: 55%;
 }
 .hero-bgimage .descrptn-text h1 {
     font-size: 3rem;
@@ -200,8 +205,17 @@
     border-radius: 1rem;
     border: none;
     outline: none;
+    cursor: pointer;
 }
-
+.hero-bgimage .heroProductsImg {
+    width: 100%;
+    max-width: 35rem; 
+    flex-basis: 45%;
+}
+.heroProductsImg img {
+    width: 100%;
+    max-width: 35rem;
+}
 .outer-container .products-container {
     width: 100%;
     display: flex;
@@ -220,6 +234,7 @@
     border-radius: 1rem;
     height: fit-content;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    user-select: none;
 }
 .products-container .filter-container .close-filter {
     display: none;
@@ -374,8 +389,8 @@
     border-radius: 5px;
 }
 .slider-container input[type="range"] {
-    position: absolute;
     width: 100%;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     appearance: none;
@@ -432,7 +447,6 @@ option {
 option:hover {
     background-color: #e0e0e0;
 }
-
 .outer-container .products-container .productListing-container {
     background: #f5f5f5;
     flex-basis: 80%;
@@ -447,7 +461,6 @@ option:hover {
 }
 .products-lists-container {
     display: grid;
-/*grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));  */
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
@@ -495,7 +508,6 @@ option:hover {
 .product-item img {
     width: 100%;
     height: 220px;
-    /* object-fit: cover;  */
     border-radius: 0.8rem;
     margin-bottom: 1rem;
 }
@@ -510,7 +522,7 @@ option:hover {
     line-height: 1.5;
     margin-bottom: 0.8rem;
     color: #222;
-    user-select: text;
+    user-select: none;
 }
 .rating {
     display: flex;
@@ -581,7 +593,6 @@ option:hover {
     margin-top: 1rem;
     margin: auto;
 }
-
 .products-lists-container .error-message .retry-btn {
     padding: 0.4rem 0.7rem;
     background: #595454;
@@ -593,7 +604,6 @@ option:hover {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .products-container .productListing-container .pagination {
     margin-top: 2rem;
     display: flex;
@@ -623,13 +633,11 @@ option:hover {
     background: #4B0082;
     color: #ffffff;
 }
-#prev-btn:disabled,
-#next-btn:disabled {
+#prev-btn:disabled, #next-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     background: #999;
 }
-
 .outer-container .footer {
     display: flex;
     flex-wrap: wrap;
@@ -641,8 +649,6 @@ option:hover {
 .outer-container .footer .footer-column {
     flex: 1;
     flex-basis: 20%;
-   /* min-width: 200px; 
-    width: 100%;  */
     padding: 10px;
 }
 .outer-container .footer .footer-column .logo {
@@ -686,6 +692,7 @@ option:hover {
     align-items: center;
     justify-content: flex-start;
     gap: 1rem;
+    cursor: pointer;
 }
 .footer .footer-column .social-icons i {
     background: #4B0082;
@@ -701,8 +708,8 @@ option:hover {
     color: #b8afaf;
     text-align: center;
     padding: 0.2rem;
+    user-select: none;
 }
-
 .wishlist-page {
     position: fixed;
     top: 0;
@@ -717,6 +724,7 @@ option:hover {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 .wishlist-page.active {
     right: 0;
@@ -795,7 +803,6 @@ option:hover {
     width: 95px;
     height: 95px;
     border-radius: 14px;
-    object-fit: cover;
     background: #f5f5f5;
 }
 .wishlist-product-details {
@@ -838,8 +845,6 @@ option:hover {
     margin-top: 3rem;
     font-size: 1rem;
 }
-
-
 .product-modal-overlay {
     position: fixed;
     inset: 0;
@@ -861,6 +866,8 @@ option:hover {
     display: flex;
     gap: 2rem;
     position: relative;
+    user-select: none;
+    overflow-y: auto;
     animation: modalOpen 0.3s ease;
 }
 @keyframes modalOpen {
@@ -894,7 +901,6 @@ option:hover {
 .modal-main-image {
     width: 100%;
     height: 420px;
-    /* object-fit: cover;  */
 }
 .modal-product-thumbnails {
     display: flex;
@@ -987,7 +993,6 @@ option:hover {
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
-   /* border: 2px solid transparent; */
     border: 1px solid #c8c0c0;
 }
 .modal-active-color {
@@ -1131,7 +1136,6 @@ option:hover {
     background: #4B0082;
     color: #fff;
 }
-
 .skeleton-product-card {
     background: #fff;
     border-radius: 20px;
@@ -1170,16 +1174,12 @@ option:hover {
     margin-top: 1.2rem;
     background: #e5e5e5;
 }
-.skeleton-image,
-.skeleton-text,
-.skeleton-button {
+.skeleton-image, .skeleton-text, .skeleton-button {
     position: relative;
     overflow: hidden;
     background: #e5e5e5;
 }
-.skeleton-image::before,
-.skeleton-text::before,
-.skeleton-button::before {
+.skeleton-image::before, .skeleton-text::before, .skeleton-button::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -1199,8 +1199,6 @@ option:hover {
         transform: translateX(100%);
     }
 }
-
-
 .cart-page {
     position: fixed;
     top: 0;
@@ -1212,7 +1210,7 @@ option:hover {
     z-index: 2000;
     transition: 0.4s ease;
     overflow-y: auto;
-    /* padding: 2rem;  */
+    user-select: none;
 }
 .cart-page.active {
     right: 0;
@@ -1293,7 +1291,6 @@ option:hover {
 .cart-product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 .cart-product-details {
     flex: 1;
@@ -1425,7 +1422,6 @@ option:hover {
 .checkout-btn:hover {
     background: #36005f;
 }
-
 .notification-message {
     position: fixed;
     top: 20px;
@@ -1442,6 +1438,7 @@ option:hover {
     align-items: center;
     gap: 12px;
     z-index: 9999;
+    user-select: none;
     animation: slideIn 0.4s ease;
 } 
 .notification-message i {
@@ -1469,8 +1466,6 @@ option:hover {
         transform: translateX(0);
     }
 }
-
-
 @media screen and (max-width: 1024px) {
     .outer-container .header-top {
         justify-content: space-between;
@@ -1499,6 +1494,29 @@ option:hover {
     .header .nav-actions {
         flex-basis: 40%;
     }
+    .outer-container .hero-bgimage {
+        height: auto;
+        padding: 3rem 2rem;
+        gap: 2rem;
+    }
+    .hero-bgimage .descrptn-text {
+        padding-left: 1rem;
+        flex-basis: 50%;
+    }
+    .hero-bgimage .descrptn-text h1 {
+        font-size: 2.4rem;
+    }
+    .hero-bgimage .descrptn-text p {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+    .hero-bgimage .heroProductsImg {
+        max-width: 28rem;
+        flex-basis: 50%;
+    }
+    .heroProductsImg img {
+        max-width: 28rem;
+    }
     .products-lists-container .error-message {
         width: 45%;  
     }
@@ -1522,7 +1540,6 @@ option:hover {
     .modal-main-image {
         width: 100%;
         height: 340px;
-       /* object-fit: cover;  */
     }
     .modal-product-thumbnails {
         gap: 0.8rem;
@@ -1556,8 +1573,7 @@ option:hover {
     .modal-original-price {
         text-decoration: line-through;
     }
-    .modal-original-price,
-    .modal-discount-percent {
+    .modal-original-price, .modal-discount-percent {
         font-size: 0.95rem;
     }
     .modal-tax-text {
@@ -1596,8 +1612,7 @@ option:hover {
     .modal-buttons {
         gap: 0.8rem;
     }
-    .modal-buy-now-btn,
-    .modal-add-cart-btn {
+    .modal-buy-now-btn, .modal-add-cart-btn {
         padding: 0.85rem;
         font-size: 0.95rem;
     }
@@ -1658,8 +1673,7 @@ option:hover {
         width: 100%;
         flex-wrap: wrap;
     }
-    .outer-container .header-top p,
-    .outer-container .header-top i {
+    .outer-container .header-top p, .outer-container .header-top i {
         font-size: 0.85rem;
     }
     .outer-container .header {
@@ -1702,6 +1716,27 @@ option:hover {
         top: 1.2rem;
         right: 1rem;
         font-size: 1.5rem;
+    }
+    .hero-bgimage .descrptn-text {
+        flex-basis: 100%;
+        padding-left: 0;
+    }
+    .hero-bgimage .descrptn-text h1 {
+        font-size: 1.76rem;
+    }
+    .hero-bgimage .descrptn-text p {
+        font-size: 0.9rem;
+    }
+    .hero-bgimage .descrptn-text button {
+        padding: 0.75rem 1.4rem;
+        font-size: 0.9rem;
+    }
+    .hero-bgimage .heroProductsImg {
+        flex-basis: 100%;
+        max-width: 24rem;
+    }
+    .heroProductsImg img {
+        max-width: 24rem;
     }
     .outer-container .products-container {
         display: flex;
@@ -1769,7 +1804,7 @@ option:hover {
     }
     .cart-header h2 {
         font-size: 1.5rem;
-    } 
+    }   
 }
 
 @media screen and (max-width: 480px) {
@@ -1792,8 +1827,7 @@ option:hover {
         justify-content: center;
         gap: 1rem;
     }
-    .outer-container .header-top p,
-    .outer-container .header-top i {
+    .outer-container .header-top p, .outer-container .header-top i {
         font-size: 0.85rem;
     }
     .outer-container .header {
@@ -1834,6 +1868,30 @@ option:hover {
         font-size: 1.5rem;
         color: #4B0082;
         cursor: pointer;    
+    }
+    .outer-container .hero-bgimage {
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+    .hero-bgimage .descrptn-text h1 {
+        font-size: 1.5rem;
+        line-height: 2.3rem;
+    }
+    .hero-bgimage .descrptn-text p {
+        font-size: 0.95rem;
+        line-height: 1.2rem;
+    }
+    .hero-bgimage .descrptn-text button {
+        width: 100%;
+        max-width: 7rem;
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    .hero-bgimage .heroProductsImg {
+        max-width: 18rem;
+    }
+    .heroProductsImg img {
+        max-width: 18rem;
     }
     .outer-container .products-container {
         flex-direction: column;
@@ -1909,7 +1967,7 @@ option:hover {
     .products-container .productListing-container .pagination {
         gap: 0.5rem;
     }
-    .productListing-container  .pagination button {
+    .productListing-container .pagination button {
         padding: 0.6rem 0.9rem;
         font-size: 0.85rem;
     }
@@ -1941,5 +1999,3 @@ option:hover {
         align-items: center;
     }
 }
-
-
