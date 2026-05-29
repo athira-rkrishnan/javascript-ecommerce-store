@@ -109,17 +109,17 @@ NovaCart is a fully responsive, dynamic e-commerce website built using HTML, CSS
 </td>
 <td align="center">
 <h4>Notification Message</h4>
-<a href="frontend/assets/Weather-fetch-error.png">
-    <img src="frontend/assets/Weather-fetch-error.png" width="450">
+<a href="assets/images/screenshots/NotificationMsg.png">
+    <img src="assets/images/screenshots/NotificationMsg.png" width="450">
 </a>
 </td>
 </tr>
 </table>
 
 ## Deployment
-* **GitHub Pages:**  [View Demo]()
-* **Netlify:**  [View Demo]()
-* **Vercel:**  [View Demo]()
+* **GitHub Pages:**  [View Demo](https://athira-rkrishnan.github.io/javascript-ecommerce-store/)
+* **Netlify:**  [View Demo](https://novacart-ecommerce-store-js.netlify.app/)
+* **Vercel:**  [View Demo](https://javascript-novacart-ecommerce-store.vercel.app/)
 
 ## Responsive Design Screenshots
 * **Responsive at 480px:**   [View](assets/images/screenshots/Responsive-480px.png)
@@ -145,6 +145,7 @@ NovaCart is a fully responsive, dynamic e-commerce website built using HTML, CSS
 cd javascript-ecommerce-store
 ```
 3. Run the project using a local development server:
+
 Using VS Code Live Server:
 ```bash
 Right Click → Open with Live Server
